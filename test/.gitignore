@@ -1,0 +1,38 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Robot Framework output
+output.xml
+log.html
+report.html
+resust/
+results/
+*.log
+
+# Selenium/WebDriver downloads
+*.db
+*.sqlite3
+
+# VSCode settings
+.vscode/
+
+# Environment
+.env
+.venv/
+venv/
+env/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python egg files
+*.egg-info/
+.eggs/
+
+# Misc
+*.bak
+*.swp
+*.tmp

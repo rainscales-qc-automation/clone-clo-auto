@@ -1,0 +1,1 @@
+<!-- robot -d results d:\Training_Auto\project_clo\test\login_tests.robot -->
