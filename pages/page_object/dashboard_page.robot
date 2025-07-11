@@ -15,3 +15,8 @@ Verify Alert Is Displayed
     # ${alert}=    Get WebElement    ${alert_locator}
     [Arguments]    ${ALERT_TEXT}
     Element Text Should Be    ${ALERT_LOCATOR}    ${ALERT_TEXT}
+
+Hide Tool Bar Button
+    [Documentation]    Click the hide tool bar button
+    Wait Until Element Is Visible    ${HIDE_TOOL_BAR_BUTTON_LOCATOR}
+    Click Element    ${HIDE_TOOL_BAR_BUTTON_LOCATOR}

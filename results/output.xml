@@ -1,878 +1,258 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.3.1 (Python 3.10.4 on win32)" generated="2025-07-04T10:56:33.938743" rpa="false" schemaversion="5">
-<suite id="s1" name="Login Tests" source="d:\Training_Auto\project_clo\test\login_tests.robot">
-<test id="s1-t1" name="Verify Login With User Admin" line="10">
-<kw name="Open Browser To Login Page" owner="browser_setup">
+<robot generator="Robot 7.3.1 (Python 3.10.4 on win32)" generated="2025-07-10T14:39:55.880985" rpa="false" schemaversion="5">
+<suite id="s1" name="Add Assessment Test" source="d:\Training_Auto\project_clo\test\add_assessment_test.robot">
+<test id="s1-t1" name="Add Assessment Successfully" line="13">
 <kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:34.221070" level="INFO">Opening browser 'Chrome' to base url 'https://demo-clo.minds.vn/'.</msg>
+<msg time="2025-07-10T14:39:56.158261" level="INFO">Opening browser 'Chrome' to base url 'https://demo-clo.minds.vn/'.</msg>
 <arg>${BASE_URL}</arg>
 <arg>${BROWSER}</arg>
-<arg>${options}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2025-07-04T10:56:34.221070" elapsed="4.277280"/>
-</kw>
-<kw name="Maximize Browser Window" owner="SeleniumLibrary">
-<doc>Maximizes current browser window.</doc>
-<status status="PASS" start="2025-07-04T10:56:38.498350" elapsed="0.093646"/>
-</kw>
-<kw name="Set Selenium Timeout" owner="SeleniumLibrary">
-<arg>10s</arg>
-<doc>Sets the timeout that is used by various keywords.</doc>
-<status status="PASS" start="2025-07-04T10:56:38.591996" elapsed="0.001001"/>
-</kw>
-<status status="PASS" start="2025-07-04T10:56:34.220071" elapsed="4.372926"/>
+<status status="PASS" start="2025-07-10T14:39:56.157755" elapsed="10.821114"/>
 </kw>
 <kw name="Login User" owner="login_page">
 <kw name="Input Username" owner="login_page">
 <kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:38.593997" level="INFO">Typing text 'admin' into text field 'id=id_username'.</msg>
-<arg>${input_username}</arg>
-<arg>${username}</arg>
+<msg time="2025-07-10T14:40:06.980876" level="INFO">Typing text 'admin' into text field 'id=id_username'.</msg>
+<arg>${INPUT_USERNAME}</arg>
+<arg>${USERNAME}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:38.593997" elapsed="0.163955"/>
+<status status="PASS" start="2025-07-10T14:40:06.980876" elapsed="0.097120"/>
 </kw>
-<arg>${username}</arg>
-<status status="PASS" start="2025-07-04T10:56:38.593997" elapsed="0.163955"/>
+<arg>${USERNAME}</arg>
+<status status="PASS" start="2025-07-10T14:40:06.979876" elapsed="0.098120"/>
 </kw>
 <kw name="Input Password" owner="login_page">
 <kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:38.758953" level="INFO">Typing text 'demoadmin' into text field 'id=id_password'.</msg>
-<arg>${input_password}</arg>
-<arg>${password}</arg>
+<msg time="2025-07-10T14:40:07.077996" level="INFO">Typing text 'demoadmin' into text field 'id=id_password'.</msg>
+<arg>${INPUT_PASSWORD}</arg>
+<arg>${PASSWORD}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:38.758953" elapsed="0.073819"/>
+<status status="PASS" start="2025-07-10T14:40:07.077996" elapsed="0.073198"/>
 </kw>
-<arg>${password}</arg>
-<status status="PASS" start="2025-07-04T10:56:38.757952" elapsed="0.074820"/>
+<arg>${PASSWORD}</arg>
+<status status="PASS" start="2025-07-10T14:40:07.077996" elapsed="0.073198"/>
 </kw>
 <kw name="Click Login" owner="login_page">
 <kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:38.833764" level="INFO">Clicking button 'xpath=//form/button'.</msg>
-<arg>${button_login}</arg>
+<msg time="2025-07-10T14:40:07.152198" level="INFO">Clicking button 'xpath=//form/button'.</msg>
+<arg>${BUTTON_LOGIN}</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:38.833764" elapsed="0.051849"/>
+<status status="PASS" start="2025-07-10T14:40:07.152198" elapsed="0.052735"/>
 </kw>
-<status status="PASS" start="2025-07-04T10:56:38.833764" elapsed="0.051849"/>
+<status status="PASS" start="2025-07-10T14:40:07.151194" elapsed="0.053739"/>
 </kw>
 <arg>${USERNAME_ADMIN}</arg>
 <arg>${PASSWORD_ADMIN}</arg>
-<status status="PASS" start="2025-07-04T10:56:38.592997" elapsed="0.292616"/>
+<status status="PASS" start="2025-07-10T14:40:06.978869" elapsed="0.226064"/>
 </kw>
-<kw name="Verify Dashboard Title Is Displayed" owner="dashboard_page">
-<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>locator=${dashboard_title_locator}</arg>
-<arg>timeout=10s</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-07-04T10:56:38.886624" elapsed="3.218003"/>
-</kw>
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:42.130480" level="INFO">${title} = Dashboard</msg>
-<var>${title}</var>
-<arg>${dashboard_title_locator}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:42.104627" elapsed="0.026855"/>
-</kw>
-<kw name="Should Be Equal As Strings" owner="BuiltIn">
-<arg>${title}</arg>
-<arg>Dashboard</arg>
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" start="2025-07-04T10:56:42.131482" elapsed="0.000000"/>
-</kw>
-<doc>Verify that the dashboard title is displayed correctly</doc>
-<status status="PASS" start="2025-07-04T10:56:38.885613" elapsed="3.246870"/>
-</kw>
-<kw name="Get Title Categories" owner="categories">
+<kw name="Go To Categories" owner="categories">
 <kw name="Get WebElements" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:42.147761" level="INFO">${list_title_categories} = [&lt;selenium.webdriver.remote.webelement.WebElement (session="218fa1a71ed2efa1c1cf645ca85d8dc7", element="f.03F6ECD4796350ABB835CD91FC56035B.d.60AC45F0CE14E14BD1A2C25DC014C566.e.74")&gt;, &lt;selenium.webdriv...</msg>
-<var>${list_title_categories}</var>
-<arg>${categories_title_locator}</arg>
+<msg time="2025-07-10T14:40:07.212918" level="INFO">${LIST_TITLE_CATEGORIES} = []</msg>
+<var>${LIST_TITLE_CATEGORIES}</var>
+<arg>${CATEGORIES_TITLE_LOCATOR}</arg>
 <doc>Returns a list of WebElement objects matching the ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:42.133514" elapsed="0.014247"/>
+<status status="PASS" start="2025-07-10T14:40:07.204933" elapsed="0.007985"/>
 </kw>
 <for flavor="IN">
 <iter>
 <kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:42.161296" level="INFO">${title} = Trang chủ</msg>
-<var>${title}</var>
-<arg>${e_title}</arg>
+<var>${TITLE}</var>
+<arg>${E_TITLE}</arg>
 <doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:42.148754" elapsed="0.012542"/>
+<status status="NOT RUN" start="2025-07-10T14:40:07.213920" elapsed="0.000000"/>
 </kw>
 <if>
-<branch type="IF" condition="'${title}' == '${title_categories}'">
-<return>
-<value>True</value>
-<status status="NOT RUN" start="2025-07-04T10:56:42.161296" elapsed="0.000000"/>
-</return>
-<status status="NOT RUN" start="2025-07-04T10:56:42.161296" elapsed="0.000000"/>
-</branch>
-<status status="PASS" start="2025-07-04T10:56:42.161296" elapsed="0.000000"/>
-</if>
-<var name="${e_title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="218fa1a71ed2efa1c1cf645ca85d8dc7", element="f.03F6ECD4796350ABB835CD91FC56035B.d.60AC45F0CE14E14BD1A2C25DC014C566.e.74")&gt;</var>
-<status status="PASS" start="2025-07-04T10:56:42.148754" elapsed="0.013540"/>
-</iter>
-<iter>
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:42.174828" level="INFO">${title} = Chương trình đào tạo</msg>
-<var>${title}</var>
-<arg>${e_title}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:42.162294" elapsed="0.012534"/>
+<branch type="IF" condition="'${TITLE}' == '${TITLE_CATEGORIES}'">
+<kw name="Click Element" owner="SeleniumLibrary">
+<arg>${E_TITLE}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" start="2025-07-10T14:40:07.213920" elapsed="0.000000"/>
 </kw>
-<if>
-<branch type="IF" condition="'${title}' == '${title_categories}'">
-<return>
-<value>True</value>
-<status status="NOT RUN" start="2025-07-04T10:56:42.174828" elapsed="0.000000"/>
-</return>
-<status status="NOT RUN" start="2025-07-04T10:56:42.174828" elapsed="0.000000"/>
+<status status="NOT RUN" start="2025-07-10T14:40:07.213920" elapsed="0.000000"/>
 </branch>
-<status status="PASS" start="2025-07-04T10:56:42.174828" elapsed="0.000000"/>
+<status status="NOT RUN" start="2025-07-10T14:40:07.213920" elapsed="0.001000"/>
 </if>
-<var name="${e_title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="218fa1a71ed2efa1c1cf645ca85d8dc7", element="f.03F6ECD4796350ABB835CD91FC56035B.d.60AC45F0CE14E14BD1A2C25DC014C566.e.75")&gt;</var>
-<status status="PASS" start="2025-07-04T10:56:42.162294" elapsed="0.012534"/>
+<var name="${E_TITLE}"/>
+<status status="NOT RUN" start="2025-07-10T14:40:07.213920" elapsed="0.001000"/>
 </iter>
-<iter>
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:42.185907" level="INFO">${title} = Học phần</msg>
-<var>${title}</var>
-<arg>${e_title}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:42.175843" elapsed="0.010064"/>
-</kw>
-<if>
-<branch type="IF" condition="'${title}' == '${title_categories}'">
-<return>
-<value>True</value>
-<status status="NOT RUN" start="2025-07-04T10:56:42.185907" elapsed="0.000000"/>
-</return>
-<status status="NOT RUN" start="2025-07-04T10:56:42.185907" elapsed="0.001033"/>
-</branch>
-<status status="PASS" start="2025-07-04T10:56:42.185907" elapsed="0.001033"/>
-</if>
-<var name="${e_title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="218fa1a71ed2efa1c1cf645ca85d8dc7", element="f.03F6ECD4796350ABB835CD91FC56035B.d.60AC45F0CE14E14BD1A2C25DC014C566.e.76")&gt;</var>
-<status status="PASS" start="2025-07-04T10:56:42.175843" elapsed="0.011097"/>
-</iter>
-<iter>
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:42.198449" level="INFO">${title} = Lớp học</msg>
-<var>${title}</var>
-<arg>${e_title}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:42.186940" elapsed="0.011509"/>
-</kw>
-<if>
-<branch type="IF" condition="'${title}' == '${title_categories}'">
-<return>
-<value>True</value>
-<status status="NOT RUN" start="2025-07-04T10:56:42.198449" elapsed="0.000000"/>
-</return>
-<status status="NOT RUN" start="2025-07-04T10:56:42.198449" elapsed="0.000000"/>
-</branch>
-<status status="PASS" start="2025-07-04T10:56:42.198449" elapsed="0.001007"/>
-</if>
-<var name="${e_title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="218fa1a71ed2efa1c1cf645ca85d8dc7", element="f.03F6ECD4796350ABB835CD91FC56035B.d.60AC45F0CE14E14BD1A2C25DC014C566.e.77")&gt;</var>
-<status status="PASS" start="2025-07-04T10:56:42.186940" elapsed="0.012516"/>
-</iter>
-<iter>
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:42.210543" level="INFO">${title} = Duyệt câu hỏi</msg>
-<var>${title}</var>
-<arg>${e_title}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:42.199456" elapsed="0.011087"/>
-</kw>
-<if>
-<branch type="IF" condition="'${title}' == '${title_categories}'">
-<return>
-<value>True</value>
-<status status="NOT RUN" start="2025-07-04T10:56:42.211541" elapsed="0.000000"/>
-</return>
-<status status="NOT RUN" start="2025-07-04T10:56:42.210543" elapsed="0.000998"/>
-</branch>
-<status status="PASS" start="2025-07-04T10:56:42.210543" elapsed="0.000998"/>
-</if>
-<var name="${e_title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="218fa1a71ed2efa1c1cf645ca85d8dc7", element="f.03F6ECD4796350ABB835CD91FC56035B.d.60AC45F0CE14E14BD1A2C25DC014C566.e.78")&gt;</var>
-<status status="PASS" start="2025-07-04T10:56:42.199456" elapsed="0.012085"/>
-</iter>
-<iter>
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:42.222699" level="INFO">${title} = Tạo câu hỏi</msg>
-<var>${title}</var>
-<arg>${e_title}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:42.211541" elapsed="0.011158"/>
-</kw>
-<if>
-<branch type="IF" condition="'${title}' == '${title_categories}'">
-<return>
-<value>True</value>
-<status status="NOT RUN" start="2025-07-04T10:56:42.223698" elapsed="0.000000"/>
-</return>
-<status status="NOT RUN" start="2025-07-04T10:56:42.223698" elapsed="0.000000"/>
-</branch>
-<status status="PASS" start="2025-07-04T10:56:42.222699" elapsed="0.000999"/>
-</if>
-<var name="${e_title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="218fa1a71ed2efa1c1cf645ca85d8dc7", element="f.03F6ECD4796350ABB835CD91FC56035B.d.60AC45F0CE14E14BD1A2C25DC014C566.e.79")&gt;</var>
-<status status="PASS" start="2025-07-04T10:56:42.211541" elapsed="0.012157"/>
-</iter>
-<iter>
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:42.233225" level="INFO">${title} = Thẻ phân loại</msg>
-<var>${title}</var>
-<arg>${e_title}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:42.224698" elapsed="0.008527"/>
-</kw>
-<if>
-<branch type="IF" condition="'${title}' == '${title_categories}'">
-<return>
-<value>True</value>
-<status status="NOT RUN" start="2025-07-04T10:56:42.234226" elapsed="0.000000"/>
-</return>
-<status status="NOT RUN" start="2025-07-04T10:56:42.234226" elapsed="0.000000"/>
-</branch>
-<status status="PASS" start="2025-07-04T10:56:42.234226" elapsed="0.000000"/>
-</if>
-<var name="${e_title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="218fa1a71ed2efa1c1cf645ca85d8dc7", element="f.03F6ECD4796350ABB835CD91FC56035B.d.60AC45F0CE14E14BD1A2C25DC014C566.e.41")&gt;</var>
-<status status="PASS" start="2025-07-04T10:56:42.223698" elapsed="0.010528"/>
-</iter>
-<iter>
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:42.242779" level="INFO">${title} = Nhập câu hỏi</msg>
-<var>${title}</var>
-<arg>${e_title}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:42.234226" elapsed="0.008553"/>
-</kw>
-<if>
-<branch type="IF" condition="'${title}' == '${title_categories}'">
-<return>
-<value>True</value>
-<status status="NOT RUN" start="2025-07-04T10:56:42.243776" elapsed="0.000000"/>
-</return>
-<status status="NOT RUN" start="2025-07-04T10:56:42.242779" elapsed="0.000997"/>
-</branch>
-<status status="PASS" start="2025-07-04T10:56:42.242779" elapsed="0.000997"/>
-</if>
-<var name="${e_title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="218fa1a71ed2efa1c1cf645ca85d8dc7", element="f.03F6ECD4796350ABB835CD91FC56035B.d.60AC45F0CE14E14BD1A2C25DC014C566.e.80")&gt;</var>
-<status status="PASS" start="2025-07-04T10:56:42.234226" elapsed="0.009550"/>
-</iter>
-<iter>
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:42.252655" level="INFO">${title} = Bài kiểm tra</msg>
-<var>${title}</var>
-<arg>${e_title}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:42.243776" elapsed="0.008879"/>
-</kw>
-<if>
-<branch type="IF" condition="'${title}' == '${title_categories}'">
-<return>
-<value>True</value>
-<status status="NOT RUN" start="2025-07-04T10:56:42.253655" elapsed="0.000000"/>
-</return>
-<status status="NOT RUN" start="2025-07-04T10:56:42.253655" elapsed="0.000000"/>
-</branch>
-<status status="PASS" start="2025-07-04T10:56:42.253655" elapsed="0.000000"/>
-</if>
-<var name="${e_title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="218fa1a71ed2efa1c1cf645ca85d8dc7", element="f.03F6ECD4796350ABB835CD91FC56035B.d.60AC45F0CE14E14BD1A2C25DC014C566.e.81")&gt;</var>
-<status status="PASS" start="2025-07-04T10:56:42.243776" elapsed="0.009879"/>
-</iter>
-<iter>
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:42.262190" level="INFO">${title} = Duyệt bài kiểm tra</msg>
-<var>${title}</var>
-<arg>${e_title}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:42.254654" elapsed="0.008555"/>
-</kw>
-<if>
-<branch type="IF" condition="'${title}' == '${title_categories}'">
-<return>
-<value>True</value>
-<status status="NOT RUN" start="2025-07-04T10:56:42.263209" elapsed="0.000000"/>
-</return>
-<status status="NOT RUN" start="2025-07-04T10:56:42.263209" elapsed="0.000000"/>
-</branch>
-<status status="PASS" start="2025-07-04T10:56:42.263209" elapsed="0.000000"/>
-</if>
-<var name="${e_title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="218fa1a71ed2efa1c1cf645ca85d8dc7", element="f.03F6ECD4796350ABB835CD91FC56035B.d.60AC45F0CE14E14BD1A2C25DC014C566.e.82")&gt;</var>
-<status status="PASS" start="2025-07-04T10:56:42.253655" elapsed="0.009554"/>
-</iter>
-<iter>
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:42.273995" level="INFO">${title} = Báo cáo CLO</msg>
-<var>${title}</var>
-<arg>${e_title}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:42.264190" elapsed="0.009805"/>
-</kw>
-<if>
-<branch type="IF" condition="'${title}' == '${title_categories}'">
-<return>
-<value>True</value>
-<status status="NOT RUN" start="2025-07-04T10:56:42.273995" elapsed="0.000000"/>
-</return>
-<status status="NOT RUN" start="2025-07-04T10:56:42.273995" elapsed="0.000000"/>
-</branch>
-<status status="PASS" start="2025-07-04T10:56:42.273995" elapsed="0.000000"/>
-</if>
-<var name="${e_title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="218fa1a71ed2efa1c1cf645ca85d8dc7", element="f.03F6ECD4796350ABB835CD91FC56035B.d.60AC45F0CE14E14BD1A2C25DC014C566.e.83")&gt;</var>
-<status status="PASS" start="2025-07-04T10:56:42.264190" elapsed="0.011330"/>
-</iter>
-<iter>
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:42.283534" level="INFO">${title} = Phân tích bài kiểm tra</msg>
-<var>${title}</var>
-<arg>${e_title}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:42.275520" elapsed="0.008014"/>
-</kw>
-<if>
-<branch type="IF" condition="'${title}' == '${title_categories}'">
-<return>
-<value>True</value>
-<status status="NOT RUN" start="2025-07-04T10:56:42.284536" elapsed="0.000000"/>
-</return>
-<status status="NOT RUN" start="2025-07-04T10:56:42.284536" elapsed="0.000000"/>
-</branch>
-<status status="PASS" start="2025-07-04T10:56:42.284536" elapsed="0.000000"/>
-</if>
-<var name="${e_title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="218fa1a71ed2efa1c1cf645ca85d8dc7", element="f.03F6ECD4796350ABB835CD91FC56035B.d.60AC45F0CE14E14BD1A2C25DC014C566.e.84")&gt;</var>
-<status status="PASS" start="2025-07-04T10:56:42.275520" elapsed="0.009016"/>
-</iter>
-<iter>
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:42.292102" level="INFO">${title} = Dashboard chương trình</msg>
-<var>${title}</var>
-<arg>${e_title}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:42.285572" elapsed="0.006530"/>
-</kw>
-<if>
-<branch type="IF" condition="'${title}' == '${title_categories}'">
-<return>
-<value>True</value>
-<status status="NOT RUN" start="2025-07-04T10:56:42.293120" elapsed="0.000000"/>
-</return>
-<status status="NOT RUN" start="2025-07-04T10:56:42.293120" elapsed="0.000000"/>
-</branch>
-<status status="PASS" start="2025-07-04T10:56:42.293120" elapsed="0.000000"/>
-</if>
-<var name="${e_title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="218fa1a71ed2efa1c1cf645ca85d8dc7", element="f.03F6ECD4796350ABB835CD91FC56035B.d.60AC45F0CE14E14BD1A2C25DC014C566.e.85")&gt;</var>
-<status status="PASS" start="2025-07-04T10:56:42.284536" elapsed="0.008584"/>
-</iter>
-<iter>
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:42.301663" level="INFO">${title} = Quản trị hệ thống</msg>
-<var>${title}</var>
-<arg>${e_title}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:42.294101" elapsed="0.007562"/>
-</kw>
-<if>
-<branch type="IF" condition="'${title}' == '${title_categories}'">
-<return>
-<value>True</value>
-<status status="PASS" start="2025-07-04T10:56:42.301663" elapsed="0.000000"/>
-</return>
-<status status="PASS" start="2025-07-04T10:56:42.301663" elapsed="0.000000"/>
-</branch>
-<status status="PASS" start="2025-07-04T10:56:42.301663" elapsed="0.000993"/>
-</if>
-<var name="${e_title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="218fa1a71ed2efa1c1cf645ca85d8dc7", element="f.03F6ECD4796350ABB835CD91FC56035B.d.60AC45F0CE14E14BD1A2C25DC014C566.e.86")&gt;</var>
-<status status="PASS" start="2025-07-04T10:56:42.293120" elapsed="0.009536"/>
-</iter>
-<var>${e_title}</var>
-<value>@{list_title_categories}</value>
-<status status="PASS" start="2025-07-04T10:56:42.147761" elapsed="0.154895"/>
+<var>${E_TITLE}</var>
+<value>@{LIST_TITLE_CATEGORIES}</value>
+<status status="NOT RUN" start="2025-07-10T14:40:07.212918" elapsed="0.002002"/>
 </for>
-<return>
-<value>False</value>
-<status status="NOT RUN" start="2025-07-04T10:56:42.302656" elapsed="0.000000"/>
-</return>
-<msg time="2025-07-04T10:56:42.302656" level="INFO">${result} = True</msg>
-<var>${result}</var>
-<arg>Quản trị hệ thống</arg>
-<doc>Verify that the dashboard title is displayed correctly</doc>
-<status status="PASS" start="2025-07-04T10:56:42.132483" elapsed="0.170173"/>
+<arg>Học Phần</arg>
+<doc>Navigate to the categories page</doc>
+<status status="PASS" start="2025-07-10T14:40:07.204933" elapsed="0.009987"/>
 </kw>
-<kw name="Log" owner="BuiltIn">
-<msg time="2025-07-04T10:56:42.303655" level="INFO">Result: True</msg>
-<arg>message=Result: ${result}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-07-04T10:56:42.303655" elapsed="0.000999"/>
-</kw>
-<kw name="Should Be True" owner="BuiltIn">
-<arg>${result}</arg>
-<arg>Không tìm thấy danh mục "Quản trị hệ thống" tại user Admin</arg>
-<doc>Fails if the given condition is not true.</doc>
-<status status="PASS" start="2025-07-04T10:56:42.304654" elapsed="0.001000"/>
-</kw>
-<kw name="Close Browser and Quit" owner="browser_setup">
-<kw name="Close Browser" owner="SeleniumLibrary">
-<doc>Closes the current browser.</doc>
-<status status="PASS" start="2025-07-04T10:56:42.306193" elapsed="2.163527"/>
-</kw>
-<status status="PASS" start="2025-07-04T10:56:42.306193" elapsed="2.163527"/>
-</kw>
-<doc>Test case to verify valid login with user admin</doc>
-<status status="PASS" start="2025-07-04T10:56:34.220071" elapsed="10.251173"/>
-</test>
-<test id="s1-t2" name="Verify Login With User Lecturer" line="21">
-<kw name="Open Browser To Login Page" owner="browser_setup">
-<kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:44.484810" level="INFO">Opening browser 'Chrome' to base url 'https://demo-clo.minds.vn/'.</msg>
-<arg>${BASE_URL}</arg>
-<arg>${BROWSER}</arg>
-<arg>${options}</arg>
-<doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2025-07-04T10:56:44.480825" elapsed="3.734653"/>
-</kw>
-<kw name="Maximize Browser Window" owner="SeleniumLibrary">
-<doc>Maximizes current browser window.</doc>
-<status status="PASS" start="2025-07-04T10:56:48.216483" elapsed="0.029543"/>
-</kw>
-<kw name="Set Selenium Timeout" owner="SeleniumLibrary">
-<arg>10s</arg>
-<doc>Sets the timeout that is used by various keywords.</doc>
-<status status="PASS" start="2025-07-04T10:56:48.247030" elapsed="0.001006"/>
-</kw>
-<status status="PASS" start="2025-07-04T10:56:44.478824" elapsed="3.769212"/>
-</kw>
-<kw name="Login User" owner="login_page">
-<kw name="Input Username" owner="login_page">
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:48.251037" level="INFO">Typing text 'lecturer1' into text field 'id=id_username'.</msg>
-<arg>${input_username}</arg>
-<arg>${username}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:48.251037" elapsed="0.101647"/>
-</kw>
-<arg>${username}</arg>
-<status status="PASS" start="2025-07-04T10:56:48.250035" elapsed="0.102649"/>
-</kw>
-<kw name="Input Password" owner="login_page">
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:48.353686" level="INFO">Typing text 'demolecturer' into text field 'id=id_password'.</msg>
-<arg>${input_password}</arg>
-<arg>${password}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:48.353686" elapsed="0.065206"/>
-</kw>
-<arg>${password}</arg>
-<status status="PASS" start="2025-07-04T10:56:48.352684" elapsed="0.066208"/>
-</kw>
-<kw name="Click Login" owner="login_page">
-<kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:48.419896" level="INFO">Clicking button 'xpath=//form/button'.</msg>
-<arg>${button_login}</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:48.419896" elapsed="0.059756"/>
-</kw>
-<status status="PASS" start="2025-07-04T10:56:48.418892" elapsed="0.060760"/>
-</kw>
-<arg>${username_lecturer}</arg>
-<arg>${password_lecturer}</arg>
-<status status="PASS" start="2025-07-04T10:56:48.249045" elapsed="0.230607"/>
-</kw>
-<kw name="Verify Dashboard Title Is Displayed" owner="dashboard_page">
-<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>locator=${dashboard_title_locator}</arg>
-<arg>timeout=10s</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-07-04T10:56:48.479652" elapsed="2.758737"/>
-</kw>
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:51.251884" level="INFO">${title} = Dashboard</msg>
-<var>${title}</var>
-<arg>${dashboard_title_locator}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:51.238389" elapsed="0.013495"/>
-</kw>
-<kw name="Should Be Equal As Strings" owner="BuiltIn">
-<arg>${title}</arg>
-<arg>Dashboard</arg>
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" start="2025-07-04T10:56:51.251884" elapsed="0.000000"/>
-</kw>
-<doc>Verify that the dashboard title is displayed correctly</doc>
-<status status="PASS" start="2025-07-04T10:56:48.479652" elapsed="2.772232"/>
-</kw>
-<kw name="Get Title Categories" owner="categories">
+<kw name="View Detail Course" owner="all_courses_page">
 <kw name="Get WebElements" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:51.262458" level="INFO">${list_title_categories} = [&lt;selenium.webdriver.remote.webelement.WebElement (session="cc4389a89826798defe595de15b281d4", element="f.DEAB5AF5839274A95770D8F51E8727D6.d.7C55982EDC45B026AB1364CF95422CB6.e.74")&gt;, &lt;selenium.webdriv...</msg>
-<var>${list_title_categories}</var>
-<arg>${categories_title_locator}</arg>
+<msg time="2025-07-10T14:40:10.016996" level="INFO">${rows} = []</msg>
+<var>${rows}</var>
+<arg>//table//tr/td[2]</arg>
 <doc>Returns a list of WebElement objects matching the ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:51.253910" elapsed="0.008548"/>
+<status status="PASS" start="2025-07-10T14:40:07.216920" elapsed="2.800076"/>
 </kw>
 <for flavor="IN">
 <iter>
 <kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:51.269974" level="INFO">${title} = Trang chủ</msg>
-<var>${title}</var>
-<arg>${e_title}</arg>
+<var>${text}</var>
+<arg>${row}</arg>
 <doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:51.263481" elapsed="0.006493"/>
+<status status="NOT RUN" start="2025-07-10T14:40:10.016996" elapsed="0.000000"/>
 </kw>
 <if>
-<branch type="IF" condition="'${title}' == '${title_categories}'">
-<return>
-<value>True</value>
-<status status="NOT RUN" start="2025-07-04T10:56:51.269974" elapsed="0.000000"/>
-</return>
-<status status="NOT RUN" start="2025-07-04T10:56:51.269974" elapsed="0.000000"/>
-</branch>
-<status status="PASS" start="2025-07-04T10:56:51.269974" elapsed="0.000000"/>
-</if>
-<var name="${e_title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="cc4389a89826798defe595de15b281d4", element="f.DEAB5AF5839274A95770D8F51E8727D6.d.7C55982EDC45B026AB1364CF95422CB6.e.74")&gt;</var>
-<status status="PASS" start="2025-07-04T10:56:51.263481" elapsed="0.006493"/>
-</iter>
-<iter>
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:51.276484" level="INFO">${title} = Chương trình đào tạo</msg>
-<var>${title}</var>
-<arg>${e_title}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:51.269974" elapsed="0.006510"/>
+<branch type="IF" condition="'${COURSE_NAME}' == '${text}'">
+<kw name="Set Variable" owner="BuiltIn">
+<var>${XPATH_COURSE_NAME}</var>
+<arg>//tr[td[contains(., '${COURSE_NAME}')]]//a[contains(@class, 'btn-info')]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" start="2025-07-10T14:40:10.017993" elapsed="0.000000"/>
 </kw>
-<if>
-<branch type="IF" condition="'${title}' == '${title_categories}'">
-<return>
-<value>True</value>
-<status status="NOT RUN" start="2025-07-04T10:56:51.276484" elapsed="0.000000"/>
-</return>
-<status status="NOT RUN" start="2025-07-04T10:56:51.276484" elapsed="0.000000"/>
-</branch>
-<status status="PASS" start="2025-07-04T10:56:51.276484" elapsed="0.000000"/>
-</if>
-<var name="${e_title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="cc4389a89826798defe595de15b281d4", element="f.DEAB5AF5839274A95770D8F51E8727D6.d.7C55982EDC45B026AB1364CF95422CB6.e.75")&gt;</var>
-<status status="PASS" start="2025-07-04T10:56:51.269974" elapsed="0.006510"/>
-</iter>
-<iter>
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:51.284034" level="INFO">${title} = Học phần</msg>
-<var>${title}</var>
-<arg>${e_title}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:51.276484" elapsed="0.007550"/>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=${XPATH_COURSE_NAME}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="NOT RUN" start="2025-07-10T14:40:10.017993" elapsed="0.000000"/>
 </kw>
-<if>
-<branch type="IF" condition="'${title}' == '${title_categories}'">
-<return>
-<value>True</value>
-<status status="NOT RUN" start="2025-07-04T10:56:51.284034" elapsed="0.000000"/>
-</return>
-<status status="NOT RUN" start="2025-07-04T10:56:51.284034" elapsed="0.000000"/>
-</branch>
-<status status="PASS" start="2025-07-04T10:56:51.284034" elapsed="0.000000"/>
-</if>
-<var name="${e_title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="cc4389a89826798defe595de15b281d4", element="f.DEAB5AF5839274A95770D8F51E8727D6.d.7C55982EDC45B026AB1364CF95422CB6.e.76")&gt;</var>
-<status status="PASS" start="2025-07-04T10:56:51.276484" elapsed="0.009127"/>
-</iter>
-<iter>
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:51.290118" level="INFO">${title} = Lớp học</msg>
-<var>${title}</var>
-<arg>${e_title}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:51.285611" elapsed="0.005529"/>
+<kw name="Click Element" owner="SeleniumLibrary">
+<arg>xpath=${XPATH_COURSE_NAME}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" start="2025-07-10T14:40:10.017993" elapsed="0.000000"/>
 </kw>
-<if>
-<branch type="IF" condition="'${title}' == '${title_categories}'">
-<return>
-<value>True</value>
-<status status="NOT RUN" start="2025-07-04T10:56:51.291140" elapsed="0.000000"/>
-</return>
-<status status="NOT RUN" start="2025-07-04T10:56:51.291140" elapsed="0.000000"/>
+<break>
+<status status="NOT RUN" start="2025-07-10T14:40:10.017993" elapsed="0.000000"/>
+</break>
+<status status="NOT RUN" start="2025-07-10T14:40:10.017993" elapsed="0.000000"/>
 </branch>
-<status status="PASS" start="2025-07-04T10:56:51.291140" elapsed="0.000000"/>
+<status status="NOT RUN" start="2025-07-10T14:40:10.017993" elapsed="0.000000"/>
 </if>
-<var name="${e_title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="cc4389a89826798defe595de15b281d4", element="f.DEAB5AF5839274A95770D8F51E8727D6.d.7C55982EDC45B026AB1364CF95422CB6.e.77")&gt;</var>
-<status status="PASS" start="2025-07-04T10:56:51.285611" elapsed="0.005529"/>
+<var name="${row}"/>
+<status status="NOT RUN" start="2025-07-10T14:40:10.016996" elapsed="0.000997"/>
 </iter>
-<iter>
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:51.295644" level="INFO">${title} = Duyệt câu hỏi</msg>
-<var>${title}</var>
-<arg>${e_title}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:51.291140" elapsed="0.004504"/>
-</kw>
-<if>
-<branch type="IF" condition="'${title}' == '${title_categories}'">
-<return>
-<value>True</value>
-<status status="NOT RUN" start="2025-07-04T10:56:51.296659" elapsed="0.000000"/>
-</return>
-<status status="NOT RUN" start="2025-07-04T10:56:51.296659" elapsed="0.000000"/>
-</branch>
-<status status="PASS" start="2025-07-04T10:56:51.296659" elapsed="0.000000"/>
-</if>
-<var name="${e_title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="cc4389a89826798defe595de15b281d4", element="f.DEAB5AF5839274A95770D8F51E8727D6.d.7C55982EDC45B026AB1364CF95422CB6.e.78")&gt;</var>
-<status status="PASS" start="2025-07-04T10:56:51.291140" elapsed="0.005519"/>
-</iter>
-<iter>
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:51.303659" level="INFO">${title} = Tạo câu hỏi</msg>
-<var>${title}</var>
-<arg>${e_title}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:51.296659" elapsed="0.007000"/>
-</kw>
-<if>
-<branch type="IF" condition="'${title}' == '${title_categories}'">
-<return>
-<value>True</value>
-<status status="NOT RUN" start="2025-07-04T10:56:51.303659" elapsed="0.000000"/>
-</return>
-<status status="NOT RUN" start="2025-07-04T10:56:51.303659" elapsed="0.000000"/>
-</branch>
-<status status="PASS" start="2025-07-04T10:56:51.303659" elapsed="0.000000"/>
-</if>
-<var name="${e_title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="cc4389a89826798defe595de15b281d4", element="f.DEAB5AF5839274A95770D8F51E8727D6.d.7C55982EDC45B026AB1364CF95422CB6.e.79")&gt;</var>
-<status status="PASS" start="2025-07-04T10:56:51.296659" elapsed="0.007000"/>
-</iter>
-<iter>
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:51.309773" level="INFO">${title} = Thẻ phân loại</msg>
-<var>${title}</var>
-<arg>${e_title}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:51.303659" elapsed="0.006114"/>
-</kw>
-<if>
-<branch type="IF" condition="'${title}' == '${title_categories}'">
-<return>
-<value>True</value>
-<status status="NOT RUN" start="2025-07-04T10:56:51.309773" elapsed="0.000000"/>
-</return>
-<status status="NOT RUN" start="2025-07-04T10:56:51.309773" elapsed="0.000000"/>
-</branch>
-<status status="PASS" start="2025-07-04T10:56:51.309773" elapsed="0.000000"/>
-</if>
-<var name="${e_title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="cc4389a89826798defe595de15b281d4", element="f.DEAB5AF5839274A95770D8F51E8727D6.d.7C55982EDC45B026AB1364CF95422CB6.e.80")&gt;</var>
-<status status="PASS" start="2025-07-04T10:56:51.303659" elapsed="0.006114"/>
-</iter>
-<iter>
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:51.315776" level="INFO">${title} = Nhập câu hỏi</msg>
-<var>${title}</var>
-<arg>${e_title}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:51.309773" elapsed="0.006003"/>
-</kw>
-<if>
-<branch type="IF" condition="'${title}' == '${title_categories}'">
-<return>
-<value>True</value>
-<status status="NOT RUN" start="2025-07-04T10:56:51.315776" elapsed="0.000505"/>
-</return>
-<status status="NOT RUN" start="2025-07-04T10:56:51.315776" elapsed="0.000505"/>
-</branch>
-<status status="PASS" start="2025-07-04T10:56:51.315776" elapsed="0.000505"/>
-</if>
-<var name="${e_title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="cc4389a89826798defe595de15b281d4", element="f.DEAB5AF5839274A95770D8F51E8727D6.d.7C55982EDC45B026AB1364CF95422CB6.e.81")&gt;</var>
-<status status="PASS" start="2025-07-04T10:56:51.309773" elapsed="0.006508"/>
-</iter>
-<iter>
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:51.321286" level="INFO">${title} = Bài kiểm tra</msg>
-<var>${title}</var>
-<arg>${e_title}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:51.316281" elapsed="0.005005"/>
-</kw>
-<if>
-<branch type="IF" condition="'${title}' == '${title_categories}'">
-<return>
-<value>True</value>
-<status status="NOT RUN" start="2025-07-04T10:56:51.322307" elapsed="0.000000"/>
-</return>
-<status status="NOT RUN" start="2025-07-04T10:56:51.322307" elapsed="0.000000"/>
-</branch>
-<status status="PASS" start="2025-07-04T10:56:51.321286" elapsed="0.001021"/>
-</if>
-<var name="${e_title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="cc4389a89826798defe595de15b281d4", element="f.DEAB5AF5839274A95770D8F51E8727D6.d.7C55982EDC45B026AB1364CF95422CB6.e.82")&gt;</var>
-<status status="PASS" start="2025-07-04T10:56:51.316281" elapsed="0.006026"/>
-</iter>
-<iter>
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:51.326814" level="INFO">${title} = Báo cáo CLO</msg>
-<var>${title}</var>
-<arg>${e_title}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:51.322307" elapsed="0.004507"/>
-</kw>
-<if>
-<branch type="IF" condition="'${title}' == '${title_categories}'">
-<return>
-<value>True</value>
-<status status="NOT RUN" start="2025-07-04T10:56:51.326814" elapsed="0.000000"/>
-</return>
-<status status="NOT RUN" start="2025-07-04T10:56:51.326814" elapsed="0.001001"/>
-</branch>
-<status status="PASS" start="2025-07-04T10:56:51.326814" elapsed="0.001001"/>
-</if>
-<var name="${e_title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="cc4389a89826798defe595de15b281d4", element="f.DEAB5AF5839274A95770D8F51E8727D6.d.7C55982EDC45B026AB1364CF95422CB6.e.83")&gt;</var>
-<status status="PASS" start="2025-07-04T10:56:51.322307" elapsed="0.005508"/>
-</iter>
-<iter>
-<kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:51.334816" level="INFO">${title} = Phân tích bài kiểm tra</msg>
-<var>${title}</var>
-<arg>${e_title}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:51.327815" elapsed="0.007001"/>
-</kw>
-<if>
-<branch type="IF" condition="'${title}' == '${title_categories}'">
-<return>
-<value>True</value>
-<status status="NOT RUN" start="2025-07-04T10:56:51.334816" elapsed="0.000000"/>
-</return>
-<status status="NOT RUN" start="2025-07-04T10:56:51.334816" elapsed="0.000000"/>
-</branch>
-<status status="PASS" start="2025-07-04T10:56:51.334816" elapsed="0.000000"/>
-</if>
-<var name="${e_title}">&lt;selenium.webdriver.remote.webelement.WebElement (session="cc4389a89826798defe595de15b281d4", element="f.DEAB5AF5839274A95770D8F51E8727D6.d.7C55982EDC45B026AB1364CF95422CB6.e.84")&gt;</var>
-<status status="PASS" start="2025-07-04T10:56:51.327815" elapsed="0.007001"/>
-</iter>
-<var>${e_title}</var>
-<value>@{list_title_categories}</value>
-<status status="PASS" start="2025-07-04T10:56:51.263481" elapsed="0.071335"/>
+<var>${row}</var>
+<value>@{rows}</value>
+<status status="NOT RUN" start="2025-07-10T14:40:10.016996" elapsed="0.001540"/>
 </for>
-<return>
-<value>False</value>
-<status status="PASS" start="2025-07-04T10:56:51.334816" elapsed="0.000000"/>
-</return>
-<msg time="2025-07-04T10:56:51.334816" level="INFO">${result} = False</msg>
-<var>${result}</var>
-<arg>Quản trị hệ thống</arg>
-<doc>Verify that the dashboard title is displayed correctly</doc>
-<status status="PASS" start="2025-07-04T10:56:51.252926" elapsed="0.082888"/>
+<arg>${COURSE_NAME}</arg>
+<status status="PASS" start="2025-07-10T14:40:07.215919" elapsed="2.802617"/>
 </kw>
-<kw name="Should Not Be True" owner="BuiltIn">
-<arg>${result}</arg>
-<arg>Tìm thấy danh mục "Quản trị hệ thống" tại user Lecturer</arg>
-<doc>Fails if the given condition is true.</doc>
-<status status="PASS" start="2025-07-04T10:56:51.335814" elapsed="0.000000"/>
-</kw>
-<kw name="Close Browser and Quit" owner="browser_setup">
-<kw name="Close Browser" owner="SeleniumLibrary">
-<doc>Closes the current browser.</doc>
-<status status="PASS" start="2025-07-04T10:56:51.335814" elapsed="2.154677"/>
-</kw>
-<status status="PASS" start="2025-07-04T10:56:51.335814" elapsed="2.154677"/>
-</kw>
-<doc>Test case to verify valid login with user lecturer</doc>
-<status status="PASS" start="2025-07-04T10:56:44.475795" elapsed="9.015701"/>
-</test>
-<test id="s1-t3" name="Verify Login With Invalid User" line="30">
-<kw name="Open Browser To Login Page" owner="browser_setup">
-<kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:53.495507" level="INFO">Opening browser 'Chrome' to base url 'https://demo-clo.minds.vn/'.</msg>
-<arg>${BASE_URL}</arg>
-<arg>${BROWSER}</arg>
-<arg>${options}</arg>
-<doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2025-07-04T10:56:53.494513" elapsed="3.670341"/>
-</kw>
-<kw name="Maximize Browser Window" owner="SeleniumLibrary">
-<doc>Maximizes current browser window.</doc>
-<status status="PASS" start="2025-07-04T10:56:57.164854" elapsed="0.025018"/>
-</kw>
-<kw name="Set Selenium Timeout" owner="SeleniumLibrary">
-<arg>10s</arg>
-<doc>Sets the timeout that is used by various keywords.</doc>
-<status status="PASS" start="2025-07-04T10:56:57.189872" elapsed="0.002000"/>
-</kw>
-<status status="PASS" start="2025-07-04T10:56:53.493502" elapsed="3.698370"/>
-</kw>
-<kw name="Login User" owner="login_page">
-<kw name="Input Username" owner="login_page">
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:57.192871" level="INFO">Typing text 'invaliduser' into text field 'id=id_username'.</msg>
-<arg>${input_username}</arg>
-<arg>${username}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:57.192871" elapsed="0.133966"/>
-</kw>
-<arg>${username}</arg>
-<status status="PASS" start="2025-07-04T10:56:57.192871" elapsed="0.133966"/>
-</kw>
-<kw name="Input Password" owner="login_page">
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:57.328848" level="INFO">Typing text 'invalidpass' into text field 'id=id_password'.</msg>
-<arg>${input_password}</arg>
-<arg>${password}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:57.327842" elapsed="0.079635"/>
-</kw>
-<arg>${password}</arg>
-<status status="PASS" start="2025-07-04T10:56:57.327842" elapsed="0.079635"/>
-</kw>
-<kw name="Click Login" owner="login_page">
+<kw name="Open Add Assessment Form" owner="course_detail_page">
 <kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:57.408478" level="INFO">Clicking button 'xpath=//form/button'.</msg>
-<arg>${button_login}</arg>
+<msg time="2025-07-10T14:40:10.019528" level="INFO">Clicking button 'xpath=//a[contains(., 'Thêm bài kiểm tra')]'.</msg>
+<msg time="2025-07-10T14:40:10.137932" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-2.png"&gt;&lt;img src="selenium-screenshot-2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-07-10T14:40:10.137932" level="FAIL">Button with locator 'xpath=//a[contains(., 'Thêm bài kiểm tra')]' not found.</msg>
+<arg>${ADD_ASSESSMENT_BUTTON}</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-07-04T10:56:57.408478" elapsed="0.068825"/>
+<status status="FAIL" start="2025-07-10T14:40:10.018536" elapsed="0.122105">Button with locator 'xpath=//a[contains(., 'Thêm bài kiểm tra')]' not found.</status>
 </kw>
-<status status="PASS" start="2025-07-04T10:56:57.407477" elapsed="0.069826"/>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>${TITLE_COURSE_DETAIL}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="NOT RUN" start="2025-07-10T14:40:10.141641" elapsed="0.000000"/>
 </kw>
-<arg>${username_invalid}</arg>
-<arg>${password_invalid}</arg>
-<status status="PASS" start="2025-07-04T10:56:57.192871" elapsed="0.284432"/>
+<status status="FAIL" start="2025-07-10T14:40:10.018536" elapsed="0.123105">Button with locator 'xpath=//a[contains(., 'Thêm bài kiểm tra')]' not found.</status>
 </kw>
-<kw name="Is Error Message Displayed" owner="login_page">
-<kw name="Run Keyword And Return Status" owner="BuiltIn">
-<kw name="Element Should Be Visible" owner="SeleniumLibrary">
-<msg time="2025-07-04T10:56:59.204479" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-4.png"&gt;&lt;img src="selenium-screenshot-4.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg time="2025-07-04T10:56:59.204479" level="FAIL">Element with locator 'xpath=//div[contains(@class, 'alert-error')]' not found.</msg>
-<arg>${msg_error}</arg>
-<doc>Verifies that the element identified by ``locator`` is visible.</doc>
-<status status="FAIL" start="2025-07-04T10:56:57.478589" elapsed="1.729038">Element with locator 'xpath=//div[contains(@class, 'alert-error')]' not found.</status>
+<kw name="Fill Assessment Form" owner="add_assessment_page">
+<arg>Assessment 1</arg>
+<arg>Đánh giá thường xuyên</arg>
+<arg>20%</arg>
+<arg>Written Paper</arg>
+<arg>60</arg>
+<arg>100</arg>
+<arg>50</arg>
+<arg>Active</arg>
+<status status="NOT RUN" start="2025-07-10T14:40:10.141641" elapsed="0.000000"/>
 </kw>
-<msg time="2025-07-04T10:56:59.207627" level="INFO">${is_displayed} = False</msg>
-<var>${is_displayed}</var>
-<arg>Element Should Be Visible</arg>
-<arg>${msg_error}</arg>
-<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-07-04T10:56:57.477303" elapsed="1.730324"/>
-</kw>
-<return>
-<value>${is_displayed}</value>
-<status status="PASS" start="2025-07-04T10:56:59.207627" elapsed="0.000000"/>
-</return>
-<msg time="2025-07-04T10:56:59.207627" level="INFO">${is_displayed} = False</msg>
-<var>${is_displayed}</var>
-<status status="PASS" start="2025-07-04T10:56:57.477303" elapsed="1.730324"/>
+<kw name="Is Assessment Button Visible" owner="course_detail_page">
+<var>${IS_VISIBLE}</var>
+<doc>Kiểm tra nút thêm đánh giá có hiển thị trên màn hình hay không, trả về Boolean</doc>
+<status status="NOT RUN" start="2025-07-10T14:40:10.142638" elapsed="0.000000"/>
 </kw>
 <kw name="Should Be True" owner="BuiltIn">
-<msg time="2025-07-04T10:56:59.208628" level="FAIL">Không hiển thị thông báo lỗi khi đăng nhập với tài khoản không hợp lệ</msg>
-<arg>${is_displayed}</arg>
-<arg>Không hiển thị thông báo lỗi khi đăng nhập với tài khoản không hợp lệ</arg>
+<arg>${IS_VISIBLE}</arg>
+<arg>Nút "Thêm bài kiểm tra" không hiển thị sau khi thêm đánh giá thành công</arg>
 <doc>Fails if the given condition is not true.</doc>
-<status status="FAIL" start="2025-07-04T10:56:59.208628" elapsed="0.000000">Không hiển thị thông báo lỗi khi đăng nhập với tài khoản không hợp lệ</status>
+<status status="NOT RUN" start="2025-07-10T14:40:10.142638" elapsed="0.000000"/>
 </kw>
-<doc>Test case to verify invalid login</doc>
-<status status="FAIL" start="2025-07-04T10:56:53.493502" elapsed="5.715126">Không hiển thị thông báo lỗi khi đăng nhập với tài khoản không hợp lệ</status>
+<kw name="Get Name Assessment In Table" owner="course_detail_page">
+<var>${NAME_COURSE_TABLE}</var>
+<doc>Lấy tên đánh giá trong bảng</doc>
+<status status="NOT RUN" start="2025-07-10T14:40:10.142638" elapsed="0.000999"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${NAME_COURSE_TABLE}</arg>
+<arg>Assessment 1</arg>
+<arg>Tên bài kiểm tra không khớp với tên đã thêm</arg>
+<arg>strip_spaces=True</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" start="2025-07-10T14:40:10.143637" elapsed="0.000000"/>
+</kw>
+<kw name="Get Loai Danh Gia In Table" owner="course_detail_page">
+<var>${LOAI_DANH_GIA_TABLE}</var>
+<doc>Lấy loại đánh giá trong bảng</doc>
+<status status="NOT RUN" start="2025-07-10T14:40:10.143637" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${LOAI_DANH_GIA_TABLE}</arg>
+<arg>Đánh giá thường xuyên</arg>
+<arg>Loại đánh giá không khớp với loại đã thêm</arg>
+<arg>strip_spaces=True</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" start="2025-07-10T14:40:10.143637" elapsed="0.000000"/>
+</kw>
+<kw name="Get Ty Trong In Table" owner="course_detail_page">
+<var>${TY_TRONG_TABLE}</var>
+<doc>Lấy tỷ trọng trong bảng</doc>
+<status status="NOT RUN" start="2025-07-10T14:40:10.143637" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${TY_TRONG_TABLE}</arg>
+<arg>20%</arg>
+<arg>Tỷ trọng không khớp với tỷ trọng đã thêm</arg>
+<arg>strip_spaces=True</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" start="2025-07-10T14:40:10.143637" elapsed="0.000000"/>
+</kw>
+<kw name="Get Thoi Gian In Table" owner="course_detail_page">
+<var>${THOI_GIAN_TABLE}</var>
+<doc>Lấy thời gian trong bảng</doc>
+<status status="NOT RUN" start="2025-07-10T14:40:10.144637" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${THOI_GIAN_TABLE}</arg>
+<arg>60 phút</arg>
+<arg>Thời gian không khớp với thời gian đã thêm</arg>
+<arg>strip_spaces=True</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" start="2025-07-10T14:40:10.144637" elapsed="0.000000"/>
+</kw>
+<kw name="Get Trang Thai In Table" owner="course_detail_page">
+<var>${TRANG_THAI_TABLE}</var>
+<doc>Lấy trạng thái trong bảng</doc>
+<status status="NOT RUN" start="2025-07-10T14:40:10.144637" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${TRANG_THAI_TABLE}</arg>
+<arg>Hoạt động</arg>
+<arg>Trạng thái không khớp với trạng thái đã thêm</arg>
+<arg>strip_spaces=True</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" start="2025-07-10T14:40:10.144637" elapsed="0.000000"/>
+</kw>
+<doc>Test case to add an assessment</doc>
+<status status="FAIL" start="2025-07-10T14:39:56.156769" elapsed="13.987868">Button with locator 'xpath=//a[contains(., 'Thêm bài kiểm tra')]' not found.</status>
 </test>
-<status status="FAIL" start="2025-07-04T10:56:33.939746" elapsed="25.269881"/>
+<status status="FAIL" start="2025-07-10T14:39:55.881986" elapsed="14.263651"/>
 </suite>
 <statistics>
 <total>
-<stat pass="2" fail="1" skip="0">All Tests</stat>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat name="Login Tests" id="s1" pass="2" fail="1" skip="0">Login Tests</stat>
+<stat name="Add Assessment Test" id="s1" pass="0" fail="1" skip="0">Add Assessment Test</stat>
 </suite>
 </statistics>
 <errors>
+<msg time="2025-07-10T14:39:56.152749" level="WARN">Error in file 'd:\Training_Auto\project_clo\pages\page_object\course_detail_page.robot' on line 16: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
 </errors>
 </robot>

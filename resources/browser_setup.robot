@@ -11,7 +11,7 @@ Resource   ../resources/browser_setup.robot
 Open Browser To Login Page
     [Documentation]    Open the browser to the login page with specified options
 
-    Open Browser    ${BASE_URL}    ${BROWSER}    options=${OPTIONS}
+    Open Browser    ${BASE_URL}    ${BROWSER}    #options=${OPTIONS}
     Maximize Browser Window
     Set Selenium Timeout    10s
 

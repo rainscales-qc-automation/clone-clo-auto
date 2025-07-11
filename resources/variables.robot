@@ -13,3 +13,5 @@ ${USERNAME_INVALID}    invaliduser
 ${PASSWORD_INVALID}    invalidpass
 
 ${TIMEOUT}     10s
+
+${COURSE_NAME}       Nhập môn lập trình
