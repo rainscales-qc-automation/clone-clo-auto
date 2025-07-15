@@ -13,7 +13,7 @@ Open Add Assessment Form
     Scroll Element Into View    ${ADD_ASSESSMENT_BUTTON_LOCATOR}
     Sleep    2s
     # Execute Javascript    arguments[0].click()    ${ADD_ASSESSMENT_BUTTON_LOCATOR}
-    Click Button    ${ADD_ASSESSMENT_BUTTON_LOCATOR}
+    Click Element    ${ADD_ASSESSMENT_BUTTON_LOCATOR}
     Wait Until Page Contains Element    ${TITLE_ADD_ASSESSMENT_LOCATOR}    timeout=3s
 
 
@@ -26,6 +26,7 @@ Is Assessment Button Visible
 Get Name Assessment In Table
     [Documentation]    Lấy tên đánh giá trong bảng   
     ${raw_text}=    Get Text    ${NAME_COURSE_TABLE_LOCATOR}
+    # Table Should Contain    locator=${NAME_COURSE_TABLE_LOCATOR}    
     ${stripped_text}=    Strip String    ${raw_text}
     RETURN    ${stripped_text}
     
@@ -48,11 +49,15 @@ Get Ty Trong In Table
     ${integer_string}=  Replace String    ${number_string}    .00    ${EMPTY} 
     # Chuyển chuỗi thành số nguyên
     ${integer_value}=  Convert To Integer    ${integer_string}
-    Log To Console     Giá trị số nguyên: ${integer_value}
     RETURN    ${stripped_text}
+
+
 Get Thoi Gian In Table
     [Documentation]    Lấy thời gian trong bảng
-    RETURN    Get Text    ${THOI_GIAN_TABLE_LOCATOR}
+    ${raw_text}=    Get Text    ${THOI_GIAN_TABLE_LOCATOR}
+    ${stripped_text}=    Strip String    ${raw_text}
+    RETURN    ${stripped_text}
+
 Get Trang Thai In Table  
     [Documentation]    Lấy trạng thái trong bảng
     ${raw_text}=    Get Text    ${TRANG_THAI_TABLE_LOCATOR}

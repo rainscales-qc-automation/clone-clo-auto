@@ -36,25 +36,27 @@ Verify Add Assessment Successfully
     Hide Tool Bar Button
     Go To Categories    Học phần
     View Detail Course    ${COURSE_NAME}
-    # Open Add Assessment Form
-    ${LINKS}=    Get Link From Href    ${ADD_ASSESSMENT_BUTTON_LOCATOR}
-    Go to    ${LINKS}
-    Fill Assessment Form    Assessment 1    Đánh giá thường xuyên    20    Written Paper    60    100    50    Planned
-
+    Open Add Assessment Form
+    # ${LINKS}=    Get Link From Href    ${ADD_ASSESSMENT_BUTTON_LOCATOR}
+    # Go to    ${LINKS}
+    # Fill Assessment Form    Assessment 1    Đánh giá thường xuyên    20    Written Paper    60    100    50    Planned
+    Fill Assessment Form    @{LIST_DATA_ASSESSMENT}[0]    @{LIST_DATA_ASSESSMENT}[1]    @{LIST_DATA_ASSESSMENT}[2]    @{LIST_DATA_ASSESSMENT}[3]    @{LIST_DATA_ASSESSMENT}[4]    @{LIST_DATA_ASSESSMENT}[5]    @{LIST_DATA_ASSESSMENT}[6]    @{LIST_DATA_ASSESSMENT}[7]
+    
     ${IS_VISIBLE}=    Is Assessment Button Visible
     Should Be True    ${IS_VISIBLE}    Nút "Thêm bài kiểm tra" không hiển thị sau khi thêm đánh giá thành công
 
     ${NAME_COURSE_TABLE}=    Get Name Assessment In Table
-    Should Be Equal As Strings    ${NAME_COURSE_TABLE}     Assessment 1    Tên bài kiểm tra không khớp với tên đã thêm    strip_spaces=True
+    Should Be Equal As Strings    ${NAME_COURSE_TABLE}     @{LIST_DATA_ASSESSMENT}[0]    Tên bài kiểm tra không khớp với tên đã thêm    strip_spaces=True
     ${LOAI_DANH_GIA_TABLE}=    Get Loai Danh Gia In Table
-    Should Be Equal As Strings    ${LOAI_DANH_GIA_TABLE}    Đánh giá thường xuyên    Loại đánh giá không khớp với loại đã thêm    strip_spaces=True
+    Should Be Equal As Strings    ${LOAI_DANH_GIA_TABLE}    @{LIST_DATA_ASSESSMENT}[1]    Loại đánh giá không khớp với loại đã thêm    strip_spaces=True
     ${TY_TRONG_TABLE}=    Get Ty Trong In Table
-    Should Be Equal As Strings    ${TY_TRONG_TABLE}    20    Tỷ trọng không khớp với tỷ trọng đã thêm    strip_spaces=True
+    Should Be Equal As Strings    ${TY_TRONG_TABLE}    @{LIST_DATA_ASSESSMENT}[2]    Tỷ trọng không khớp với tỷ trọng đã thêm    strip_spaces=True
     ${THOI_GIAN_TABLE}=    Get Thoi Gian In Table  
-    Should Be Equal As Strings    ${THOI_GIAN_TABLE}    60    Thời gian không khớp với thời gian đã thêm    strip_spaces=True
+    Should Be Equal As Strings    ${THOI_GIAN_TABLE}    @{LIST_DATA_ASSESSMENT}[4]    Thời gian không khớp với thời gian đã thêm    strip_spaces=True
     ${TRANG_THAI_TABLE}=    Get Trang Thai In Table 
-    Should Be Equal As Strings    ${TRANG_THAI_TABLE}    Planned    Trạng thái không khớp với trạng thái đã thêm    strip_spaces=True 
-
+    Should Be Equal As Strings    ${TRANG_THAI_TABLE}    @{LIST_DATA_ASSESSMENT}[7]    Trạng thái không khớp với trạng thái đã thêm    strip_spaces=True 
+    Table Should Contain    locator=${NAME_COURSE_TABLE_LOCATOR}    @{LIST_DATA_ASSESSMENT}[0]    message=Không tìm thấy tên đánh giá trong bảng
+    
 
 Verify Leave Required Fields Empty
     [Documentation]    Test case Bỏ trống các trường bắt buộc
@@ -94,8 +96,8 @@ Verify Fill Assessment WithInvalidPassScore
     Fill Assessment Form    Assessment 1    Đánh giá thường xuyên    20    Written Paper    60    100    110    Planned
 
     ${IS_VISIBLE}=    Is Assessment Button Visible
-    Should Be True    ${IS_VISIBLE}    Tiêu đề "Thêm đánh giá mới" không hiển thị
-
+    Should Not Be True    ${IS_VISIBLE}    Tiêu đề "Thêm đánh giá mới" hiển thị, mặc dù điểm đạt > tổng điểm
+   
 Verify Fill Assessment WithSpecialDescription
     [Documentation]    Tên đánh giá có ký tự đặc biệt
     

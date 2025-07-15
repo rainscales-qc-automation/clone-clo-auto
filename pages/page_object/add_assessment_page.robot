@@ -44,8 +44,7 @@ Select Trang Thai
 Click Button Add Assessment
     Wait Until Element Is Visible    ${BUTTON_ADD_ASSESSMENT}    timeout=10s
     Scroll Element Into View    ${BUTTON_ADD_ASSESSMENT}
-    Sleep    5s
-    Click Button    ${BUTTON_ADD_ASSESSMENT}
+    Click Element    ${BUTTON_ADD_ASSESSMENT}
 
 
 Fill Assessment Form

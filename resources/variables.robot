@@ -14,4 +14,6 @@ ${PASSWORD_INVALID}    invalidpass
 
 ${TIMEOUT}     10s
 
-${COURSE_NAME}       Nhập môn lập trình
+${COURSE_NAME}       Cấu trúc dữ liệu và giải thuật
+
+@{LIST_DATA_ASSESSMENT}    Assessment 1    Đánh giá thường xuyên    20    Written Paper    60    100    50    Planned
