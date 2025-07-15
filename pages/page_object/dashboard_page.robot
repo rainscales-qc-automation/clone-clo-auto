@@ -10,7 +10,7 @@ Get Dashboard Title Is Displayed
     # Should Be Equal As Strings    ${title}    Dashboard   
     RETURN   ${title} 
 
-Verify Alert Is Displayed
+Is Alert Is Displayed
     [Documentation]    Verify that the alert is displayed
     # ${alert}=    Get WebElement    ${alert_locator}
     [Arguments]    ${ALERT_TEXT}
