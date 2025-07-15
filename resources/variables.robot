@@ -1,3 +1,4 @@
+
 *** Variables ***
 ${BASE_URL}    https://demo-clo.minds.vn/
 ${BROWSER}     Chrome

@@ -40,7 +40,8 @@ Verify Add Assessment Successfully
     # ${LINKS}=    Get Link From Href    ${ADD_ASSESSMENT_BUTTON_LOCATOR}
     # Go to    ${LINKS}
     # Fill Assessment Form    Assessment 1    Đánh giá thường xuyên    20    Written Paper    60    100    50    Planned
-    Fill Assessment Form    @{LIST_DATA_ASSESSMENT}[0]    @{LIST_DATA_ASSESSMENT}[1]    @{LIST_DATA_ASSESSMENT}[2]    @{LIST_DATA_ASSESSMENT}[3]    @{LIST_DATA_ASSESSMENT}[4]    @{LIST_DATA_ASSESSMENT}[5]    @{LIST_DATA_ASSESSMENT}[6]    @{LIST_DATA_ASSESSMENT}[7]
+    Fill Assessment Form    @{LIST_DATA_ASSESSMENT}[0]    @{LIST_DATA_ASSESSMENT}[1]    @{LIST_DATA_ASSESSMENT}[2]    @{LIST_DATA_ASSESSMENT}[3]    
+    ...    @{LIST_DATA_ASSESSMENT}[4]    @{LIST_DATA_ASSESSMENT}[5]    @{LIST_DATA_ASSESSMENT}[6]    @{LIST_DATA_ASSESSMENT}[7]
     
     ${IS_VISIBLE}=    Is Assessment Button Visible
     Should Be True    ${IS_VISIBLE}    Nút "Thêm bài kiểm tra" không hiển thị sau khi thêm đánh giá thành công
