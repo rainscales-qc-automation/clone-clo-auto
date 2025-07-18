@@ -1,0 +1,2 @@
+*** Variables ***
+${Popup}    id:djHideToolBarButton
