@@ -6,6 +6,8 @@ def get_chrome_options():
     options = Options()
     # chạy chế độ khách
     options.add_argument('--guest')
+    # chay an danh
+    # options.add_argument('--incognito')
 
     options.add_argument('--safebrowsing-disable-download-protection')
     options.add_argument("--no-sandbox") 
@@ -40,4 +42,15 @@ def get_chrome_options():
 #         "OPTIONS": get_chrome_options()
 #     }
 
+# import keyword robot
+# from robot.api.deco import keyword
 
+# create class options
+# class BrowserOptions:
+#     def __init__(self):
+#         self.options = Options()
+        
+#     @keyword('Get Options')
+#     def get_options(self):
+#         return self.options.add_argument("--incognito")
+    
