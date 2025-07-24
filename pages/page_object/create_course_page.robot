@@ -5,6 +5,7 @@ Library    SeleniumLibrary
 Library    String
 Library    Collections
 Library    RPA.Excel.Files
+Library    OperatingSystem
 #Library    RPA.Desktop
 *** Keywords ***
 Select value course
@@ -51,20 +52,22 @@ Enter Course Detail Form With Maximum Credits
     #Select From List By Label    ${PROGRAME_SELECT}
     Select From List By Label    id:id_program    ${PROGRAM_VL}
     Input Text    ${COURSECODE_INPUT}    ${COURSE_CODE_VL}
-    Input Text    ${COURSENAME_INPUT}    ${COURSE_NAME_VL}        
-    #Input Text    ${CREDITS_INPUT}    ${CREDITS_VL}   
-    ${prev}=    Get Value    ${CREDITS_INPUT}
-    ${prev}=    Convert To Integer    ${prev}
+    Input Text    ${COURSENAME_INPUT}    ${COURSE_NAME_VL}
+    # Input Text    ${CREDITS_INPUT}    ${CREDITS_VL}   
+    # ${prev}=    Get Value    ${CREDITS_INPUT}
+    # ${prev}=    Convert To Integer    ${prev}
 
-    FOR    ${i}    IN RANGE    100
-        Press Keys    ${CREDITS_INPUT}    ARROW_UP
-        Sleep    0.2
-        ${current}=    Get Value    ${CREDITS_INPUT}
-        ${current}=    Convert To Integer    ${current}
-        Run Keyword If    ${current} == ${prev}    Exit For Loop
-        ${prev}=    Set Variable    ${current}
-        Log To Console   Current value: ${current}
+    FOR    ${value}    IN    @{TEST_VALUES}
+        Clear Element Text    ${CREDITS_INPUT}
+        Input Text    ${CREDITS_INPUT}    ${value}
+        #Click Element    ${CREATECOURSE_BTN}
+        Sleep    0.5s
+        ${is_success}=    Run Keyword And Return Status    Element Should Be Visible    Giá trị hợp lệ
+        ${is_error}=      Run Keyword And Return Status    Element Should Be Visible    ${ERROR_MSG}
+        Run Keyword If    ${is_success}    Log    ${value} là giá trị hợp lệ
+        Run Keyword If    ${is_error}      Log    ${value} là giá trị không hợp lệ
     END
+    
     Input Text    ${DESCRIPTION_INPUT}    ${DESCRIPTION_VL}    
     Scroll to Create Course Button
     Click Element    ${TYPE_SELECT}        
@@ -153,7 +156,14 @@ Save Course Table Data To Excel
         Append To List    ${all_rows}    ${row}
     END
 
-    Create Workbook    ${EXCEL_FILE}
+    
+    ${file_exist}=    Run Keyword And Return Status    File Should Exist    ${EXCEL_FILE}
+    IF    ${file_exist}
+        Open Workbook    ${EXCEL_FILE}
+    ELSE
+        Create Workbook    ${EXCEL_FILE}
+    END
+    
     Create Worksheet   ${SHEET_NAME_COURSE}    header=${False}
     Append Rows To Worksheet    ${all_rows}    header=${False}
     
@@ -182,7 +192,13 @@ Save CLO Table Data To Excel
         Append To List    ${all_rows}    ${row}
     END
 
-    Create Workbook    ${EXCEL_FILE}
+    ${file_exist}=    Run Keyword And Return Status    File Should Exist    ${EXCEL_FILE}
+    IF    ${file_exist}
+        Open Workbook    ${EXCEL_FILE}
+    ELSE
+        Create Workbook    ${EXCEL_FILE}
+    END
+    
     Create Worksheet   ${SHEET_NAME_CLO}    header=${False}
     Append Rows To Worksheet    ${all_rows}    header=${False}
     

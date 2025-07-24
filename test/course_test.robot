@@ -53,7 +53,6 @@ Tcs 11: Func-Course: Create Course with maximum credits value
         Log To Console    message=Đã tạo khoá học: ${COURSE['COURSE_NAME_VL']}
     END
 
-
 Tcs 03: Func-CLO-03: Create CLOs with fully fields
     [Documentation]    Kiểm tra việc nhập giá trị vào các trường của mục tiêu khoá học
     [Teardown]    Capture Page Screenshot
@@ -95,7 +94,7 @@ Tcs 06: Edit Course
     Log To Console    message=Đã chỉnh sửa khoá học
 
 Tcs 08: Compare value CLO in course
-    [Documentation]    So sánh giá trị CLO trong khoá học
+    [Documentation]    So sánh giá trị CLO đã định nghĩa và danh sách trong clo trong khoá học
     [Teardown]    Capture Page Screenshot
     [Tags]    smoke    compare clo
     Login User    ${USERNAME_ADMIN}    ${PASSWORD_ADMIN}
@@ -130,14 +129,14 @@ TC 09: Edit All Fields In Course
 Tc 10: Get data CLO table
     [Documentation]    Lấy dữ liệu từ bảng CLO
     [Teardown]    Capture Page Screenshot
-    [Tags]    smoke    get course table
+    [Tags]    smoke    get clo table
     Login User    ${USERNAME_ADMIN}    ${PASSWORD_ADMIN}
     View Course Name From Table
     Click Element    ${CLOs_BTN}
     Save CLO Table Data To Excel
 
 Tcs 12: "Tạo mới" button inactive
-    [Documentation]    Kiểm tra nút "Tạo mới" không hoạt động khi không có dữ liệu
+    [Documentation]    Kiểm tra nút "Tạo mới" không hoạt động khi nhấp vào
     [Teardown]    Capture Page Screenshot
     [Tags]    smoke    create course
     Login User    ${USERNAME_ADMIN}    ${PASSWORD_ADMIN}
@@ -146,3 +145,26 @@ Tcs 12: "Tạo mới" button inactive
     Click Element   ${VIEWCOURSE_BTN} 
     Scroll Element Into View    ${CREATENEW_BTN}
     Click Button    ${CREATENEW_BTN} 
+
+Tc 13: Find word with valid and invalid Keyword
+    [Documentation]    Tìm kiếm từ khoá hợp lệ trong danh sách khoá học
+    [Teardown]    Capture Page Screenshot
+    [Tags]    smoke    find word
+    Login User    ${USERNAME_ADMIN}    ${PASSWORD_ADMIN}
+    Wait Until Element Is Visible    ${HOCPHAN_MENUBAR}    timeout=10s
+    Click Element    ${HOCPHAN_MENUBAR}
+    FOR    ${element}    IN    @{LIST_FIND_COURSE_KEYWORD}
+        Wait Until Element Is Visible    ${FIELD_SEARCH_COURSE}    timeout=10s
+        Input Text    ${FIELD_SEARCH_COURSE}    ${element}
+        Click Element    ${COURSE_FIND_ICON}
+        Wait Until Page Contains    ${element}
+        ${found}=    Run Keyword And Return Status    Element Should Be Visible    ${COURSE_NOT_FOUND}
+        IF    ${found} 
+            Log    Không tìm thấy từ khoá: ${element}
+        ELSE
+            Log    Từ khoá tìm kiếm: ${element}
+        END
+    END
+    
+    
+
