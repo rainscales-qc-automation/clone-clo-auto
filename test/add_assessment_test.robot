@@ -38,6 +38,7 @@ Verify Form Add Assessment is Displayed
 
     ${IS_VISIBLE}=    Is Assessment Title Visible
     Should Be True    ${IS_VISIBLE}    Tiêu đề "Thêm đánh giá mới" không hiển thị
+    
 
 Verify Add Assessment Successfully
     [Documentation]    Test case to add an assessment
