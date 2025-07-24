@@ -1,8 +1,8 @@
 *** Settings ***
 Library    SeleniumLibrary
-Resource    ../resources/browser_setup.robot
+Resource    ../../resources/browser_setup.robot
 Resource    ../locator/create_question.robot
-Resource    ../pages/page_object/login_page.robot
+Resource    ../../pages/page_object/login_page.robot
 
 
 *** Keywords ***
@@ -11,8 +11,11 @@ Login Lecturer And Go To Create Question Page
     Login User    ${USERNAME_LECTURER}    ${PASSWORD_LECTURER}
 
     Wait Until Element Is Visible    ${A_CREATE_QUESTION}    10s
+    Click Create Question Button
+    
+Click Create Question Button
+    [Documentation]    Click the create question button to open the form
     Click Element    ${A_CREATE_QUESTION}
-
 
 Verify Dropdown Options
     [Documentation]    Verify that a dropdown contains all expected options
@@ -56,7 +59,7 @@ Verify Title Create Question Page
     Should Be Equal    ${title}    Create New Question
 
 
-Verify Element From Create Question Page
+Verify From Create Question Page Is Displayed
     [Documentation]    Verify that the element from the create question page is correct
     Page Should Contain Element    ${FCQ_H6_TITLE_FROM}
     Page Should Contain Element    ${A_BACK_TO_QUESTION_BANK}

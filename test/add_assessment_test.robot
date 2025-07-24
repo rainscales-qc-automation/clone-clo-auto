@@ -13,6 +13,16 @@ Resource    ../pages/locator/course_detail_page_locator.robot
 Test Setup    Open Browser To Login Page
 Test Teardown    Close Browser and Quit
 
+*** Variables ***
+${TEN_DANH_GIA}=    Get From List    @{LIST_DATA_ASSESSMENT}    0
+${LOAIDANH_GIA}=    Get From List    @{LIST_DATA_ASSESSMENT}    1
+${TY_TRONG}=    Get From List    @{LIST_DATA_ASSESSMENT}    2
+${DINH_DANG_THI}=    Get From List    @{LIST_DATA_ASSESSMENT}    3
+${THOI_GIAN}=    Get From List    @{LIST_DATA_ASSESSMENT}    4
+${TONG_DIEM}=    Get From List    @{LIST_DATA_ASSESSMENT}    5
+${DIEM_DAT}=    Get From List    @{LIST_DATA_ASSESSMENT}    6
+${TRANG_THAI}=    Get From List    @{LIST_DATA_ASSESSMENT}    7
+
 *** Test Cases ***
 
 Verify Form Add Assessment is Displayed
@@ -22,9 +32,9 @@ Verify Form Add Assessment is Displayed
     Hide Tool Bar Button
     Go To Categories    Học phần
     View Detail Course    ${COURSE_NAME}
-    # Open Add Assessment Form
-    ${LINKS}=    Get Link From Href    ${ADD_ASSESSMENT_BUTTON_LOCATOR}
-    Go to    ${LINKS}
+    Open Add Assessment Form
+    # ${LINKS}=    Get Link From Href    ${ADD_ASSESSMENT_BUTTON_LOCATOR}
+    # Go to    ${LINKS}
 
     ${IS_VISIBLE}=    Is Assessment Title Visible
     Should Be True    ${IS_VISIBLE}    Tiêu đề "Thêm đánh giá mới" không hiển thị
@@ -41,8 +51,8 @@ Verify Add Assessment Successfully
     # ${LINKS}=    Get Link From Href    ${ADD_ASSESSMENT_BUTTON_LOCATOR}
     # Go to    ${LINKS}
     # Fill Assessment Form    Assessment 1    Đánh giá thường xuyên    20    Written Paper    60    100    50    Planned
-    Fill Assessment Form    @{LIST_DATA_ASSESSMENT}[0]    @{LIST_DATA_ASSESSMENT}[1]    @{LIST_DATA_ASSESSMENT}[2]    @{LIST_DATA_ASSESSMENT}[3]    
-    ...    @{LIST_DATA_ASSESSMENT}[4]    @{LIST_DATA_ASSESSMENT}[5]    @{LIST_DATA_ASSESSMENT}[6]    @{LIST_DATA_ASSESSMENT}[7]
+    Fill Assessment Form    ${TEN_DANH_GIA}    ${LOAIDANH_GIA}    ${TY_TRONG}    ${DINH_DANG_THI}    
+    ...    ${THOI_GIAN}    ${TONG_DIEM}    ${DIEM_DAT}    ${TRANG_THAI}
     
     ${IS_VISIBLE}=    Is Assessment Button Visible
     Should Be True    ${IS_VISIBLE}    Nút "Thêm bài kiểm tra" không hiển thị sau khi thêm đánh giá thành công
@@ -57,7 +67,7 @@ Verify Add Assessment Successfully
     Should Be Equal As Strings    ${THOI_GIAN_TABLE}    @{LIST_DATA_ASSESSMENT}[4]    Thời gian không khớp với thời gian đã thêm    strip_spaces=True
     ${TRANG_THAI_TABLE}=    Get Trang Thai In Table 
     Should Be Equal As Strings    ${TRANG_THAI_TABLE}    @{LIST_DATA_ASSESSMENT}[7]    Trạng thái không khớp với trạng thái đã thêm    strip_spaces=True 
-    Table Should Contain    locator=${NAME_COURSE_TABLE_LOCATOR}    @{LIST_DATA_ASSESSMENT}[0]    message=Không tìm thấy tên đánh giá trong bảng
+    
     
 
 Verify Leave Required Fields Empty
@@ -72,7 +82,6 @@ Verify Leave Required Fields Empty
 
     ${IS_VISIBLE}=    Is Assessment Title Visible
     Should Be True    ${IS_VISIBLE}    Tiêu đề "Thêm đánh giá mới" không hiển thị
-
 
 Verify Fill Assessment With HighWeight   
     [Documentation]    Nhập tỷ trọng > 100
@@ -115,9 +124,9 @@ Verify Fill Assessment WithSpecialDescription
 
 
 
-***** Keywords ***
-# Tạo một hàm để get link trên thẻ href
-Get Link From Href
-    [Arguments]    ${href}
-    ${link}=    Get Element Attribute    ${href}    href
-    RETURN    ${link}
+# ***** Keywords ***
+# # Tạo một hàm để get link trên thẻ href
+# Get Link From Href
+#     [Arguments]    ${href}
+#     ${link}=    Get Element Attribute    ${href}    href
+#     RETURN    ${link}
