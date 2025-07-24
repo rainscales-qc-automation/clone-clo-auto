@@ -12,13 +12,13 @@ Test Teardown    Close Browser and Quit
 
 
 *** Test Cases ***
-VERIFY FORM CREATE QUESTION
+VERIFY FORM CREATE QUESTION IS DISPLAYED
    [Documentation]    Test verify form create question
    [Tags]    question    positive
 
    Login Lecturer And Go To Create Question Page
    Verify Title Create Question Page
-   Verify Element From Create Question Page
+   Verify From Create Question Page Is Displayed
 
    [Teardown]    Close Browser
 
@@ -63,4 +63,6 @@ CREATE SIMPLE QUESTION FORM
    Createn And Verify A Simple Question
 
    [Teardown]    Close Browser
-   
+
+
+

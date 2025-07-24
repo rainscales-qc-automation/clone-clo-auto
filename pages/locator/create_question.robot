@@ -1,7 +1,7 @@
 *** Variables ***
 # Create Question
 # FCQ: Form Create Question
-${A_CREATE_QUESTION}           xpath=//a[@href="/en/questionbank/questions/create/"]
+${A_CREATE_QUESTION_LOCATOR}           xpath=//a[@href="/en/questionbank/questions/create/"]
 ${A_BACK_TO_QUESTION_BANK}     xpath=//a[normalize-space()='Back to Question Bank']
 ${CREATE_QUESTION_TITLE}       xpath=//h1[@class="content-title"]
 

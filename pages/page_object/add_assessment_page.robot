@@ -42,9 +42,9 @@ Select Trang Thai
     Select From List By Label    ${TRANGTHAI_LOCATOR}    ${TRANG_THAI}
 
 Click Button Add Assessment
-    Wait Until Element Is Visible    ${BUTTON_ADD_ASSESSMENT}    timeout=10s
-    Scroll Element Into View    ${BUTTON_ADD_ASSESSMENT}
-    Click Element    ${BUTTON_ADD_ASSESSMENT}
+    Wait Until Element Is Visible    ${BUTTON_ADD_ASSESSMENT_LOCATOR}    timeout=10s
+    Scroll Element Into View    ${BUTTON_ADD_ASSESSMENT_LOCATOR}
+    Click Element    ${BUTTON_ADD_ASSESSMENT_LOCATOR}
 
 
 Fill Assessment Form

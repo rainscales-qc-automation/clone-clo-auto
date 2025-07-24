@@ -1,7 +1,7 @@
 *** Settings ***
 Library  SeleniumLibrary
 Resource   ../locator/program_locator.robot
-Resource    ../pages/page_object/common_page.robot
+Resource    ../../pages/page_object/common_page.robot
 Resource    ../../resources/variables.robot
 
 
@@ -32,7 +32,6 @@ Click Submit Button Create New Program
     Wait Until Element Is Visible    ${CreateProgrameButton}    5
     Scroll Element Into View         ${CreateProgrameButton}
     Click Element  ${CreateProgrameButton}
-
 
 
 Verify Create Program Successful
