@@ -3,7 +3,7 @@ Resource    ../pages/page_object/login_page.robot
 Resource    ../pages/page_object/dashboard_page.robot
 Resource    ../pages/page_object/categories.robot
 Resource    ../resources/browser_setup.robot
-
+Variables    ../libs/data_reader.py
 # Tear Setup
 # Open Browser To Login Page
 
@@ -14,6 +14,7 @@ Resource    ../resources/browser_setup.robot
 Verify Login With User Admin
     [Documentation]    Test case to verify valid login with user admin
     Open Browser To Login Page
+    
     Login User   ${USERNAME_ADMIN}    ${PASSWORD_ADMIN}
     ${TITLE}=    Get Dashboard Title Is Displayed
     Should Be Equal As Strings    ${TITLE}    Dashboard    Không hiển thị tiêu đề Dashboard sau khi đăng nhập với tài khoản Admin
@@ -50,4 +51,20 @@ Verify Login With Invalid User
 
     Close Browser and Quit
 
+
+Verify Login With Multiple Accounts From Excel
+    [Documentation]    Kiểm tra đăng nhập thành công và thất bại từ file Excel
+    FOR    ${USER}    IN    @{ROBOT_USERS_PANDAS}
+        Open Browser To Login Page
+        Log To Console    Đang kiểm tra user: ${USER['username']} | ${USER['expected_result']}
+        Login User    ${USER['username']}    ${USER['password']}
+
+        Run Keyword If    '${USER['expected_result']}' == 'success'
+        ...    Log To Console    Đăng nhập thành công với user: ${USER['username']}
+
+        Run Keyword If    '${USER['expected_result']}' == 'fail'    
+        ...    Log To Console    Đăng nhập thất bại với user: ${USER['username']} | Thông báo: ${MSG_ERROR}
+
+        Close Browser and Quit
+    END
 

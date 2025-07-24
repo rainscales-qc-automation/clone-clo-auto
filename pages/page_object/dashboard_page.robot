@@ -8,6 +8,7 @@ Get Dashboard Title Is Displayed
     Wait Until Element Is Visible    locator=${DASHBOARD_TITLE_LOCATOR}    timeout=10s
     ${title}=    Get Text    ${DASHBOARD_TITLE_LOCATOR}
     # Should Be Equal As Strings    ${title}    Dashboard   
+    
     RETURN   ${title} 
 
 Is Alert Is Displayed
