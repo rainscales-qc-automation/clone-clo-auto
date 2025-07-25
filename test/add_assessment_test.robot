@@ -19,15 +19,13 @@ Test Teardown    Close Browser and Quit
 Verify Form Add Assessment is Displayed
     [Documentation]    Test case to verify the form Thêm đánh giá mới hiển thị
     [Tags]    smoke    Add Assessment
-
+ 
 
     Login User    ${USERNAME_ADMIN}    ${PASSWORD_ADMIN}
     Go To Categories    Học phần
     View Detail Course    ${COURSE_NAME}
     Open Add Assessment Form
-    # ${LINKS}=    Get Link From Href    ${ADD_ASSESSMENT_BUTTON_LOCATOR}
-    # Go to    ${LINKS}
-
+ 
     ${IS_VISIBLE}=    Is Assessment Title Visible
     Should Be True    ${IS_VISIBLE}    Tiêu đề "Thêm đánh giá mới" không hiển thị
     
@@ -64,7 +62,7 @@ Verify Add Assessment Successfully
 Verify Leave Required Fields Empty
     [Documentation]    Test case Bỏ trống các trường bắt buộc
     [Tags]    smoke    Add Assessment
-    
+
     Login User    ${USERNAME_ADMIN}    ${PASSWORD_ADMIN}
     Go To Categories    Học phần
     View Detail Course    ${COURSE_NAME}
@@ -77,7 +75,7 @@ Verify Leave Required Fields Empty
 Verify Fill Assessment With HighWeight   
     [Documentation]    Nhập tỷ trọng > 100
     [Tags]    smoke    Add Assessment
-    
+
     Login User    ${USERNAME_ADMIN}    ${PASSWORD_ADMIN}
     Go To Categories    Học phần
     View Detail Course    ${COURSE_NAME}
@@ -90,7 +88,7 @@ Verify Fill Assessment With HighWeight
 Verify Fill Assessment WithInvalidPassScore
     [Documentation]    Điểm đạt > Tổng điểm
     [Tags]    smoke    Add Assessment
-    
+
     Login User    ${USERNAME_ADMIN}    ${PASSWORD_ADMIN}
     Go To Categories    Học phần
     View Detail Course    ${COURSE_NAME}
@@ -103,7 +101,7 @@ Verify Fill Assessment WithInvalidPassScore
 Verify Fill Assessment WithSpecialDescription
     [Documentation]    Tên đánh giá có ký tự đặc biệt
     [Tags]    smoke    Add Assessment
-    
+
     Login User    ${USERNAME_ADMIN}    ${PASSWORD_ADMIN}
     Go To Categories    Học phần
     View Detail Course    ${COURSE_NAME}
