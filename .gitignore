@@ -24,7 +24,7 @@ venv/
 .env/
 .envrc
 .venv/
-
+.venv
 # IDE files
 .idea/
 .vscode/

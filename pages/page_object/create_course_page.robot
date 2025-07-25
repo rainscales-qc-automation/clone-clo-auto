@@ -7,6 +7,7 @@ Library    Collections
 #Library    RPA.Excel.Files
 Library    OperatingSystem
 #Library    RPA.Desktop
+
 *** Keywords ***
 Select value course
     Select Checkbox    ${CORESUBJECT_CKB}

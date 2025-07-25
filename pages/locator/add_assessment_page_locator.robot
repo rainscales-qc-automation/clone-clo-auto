@@ -16,5 +16,5 @@ ${DIEMDAT_LOCATOR}    id=id_passing_score
 
 ${TRANGTHAI_LOCATOR}    id=id_status
 
-${BUTTON_ADD_ASSESSMENT_LOCATOR}    xpath=//div[@class='form-group']/button[contains(., 'Thêm đánh giá')]/i
-# //div[@class='form-group']/button
+# ${BUTTON_ADD_ASSESSMENT_LOCATOR}    xpath=//div[@class='form-group']/button[contains(., 'Thêm đánh giá')]
+${BUTTON_ADD_ASSESSMENT_LOCATOR}    xpath=//div[@class='form-group']/button

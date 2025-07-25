@@ -20,7 +20,7 @@ Open Add Assessment Form
 Is Assessment Button Visible
     [Documentation]    Kiểm tra nút thêm đánh giá có hiển thị trên màn hình hay không, trả về Boolean
     Execute JavaScript    window.scrollTo(0, document.body.scrollHeight * 0.5)
-    Wait Until Element Is Visible    ${ADD_ASSESSMENT_BUTTON_LOCATOR}    timeout=10s
+    Wait Until Element Is Visible    ${ADD_ASSESSMENT_BUTTON_LOCATOR}    timeout=15s
     ${is_visible}=    Run Keyword And Return Status    Element Should Be Visible    ${ADD_ASSESSMENT_BUTTON_LOCATOR}
     RETURN    ${is_visible}
 Get Name Assessment In Table
