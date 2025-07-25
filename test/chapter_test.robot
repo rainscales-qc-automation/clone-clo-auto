@@ -2,7 +2,7 @@
 Library    SeleniumLibrary
 Library    String
 Library    Collections
-Library    RPA.Desktop
+# Library    RPA.Desktop
 Resource    ../pages/page_object/login_page.robot
 Resource    ../pages/page_object/create_course_page.robot
 Resource    ../pages/page_object/chapter_page.robot

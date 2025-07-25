@@ -24,6 +24,7 @@ Get Title Categories
 Go To Categories
     [Documentation]    Navigate to the categories page
     [Arguments]    ${TITLE_CATEGORIES}
+    Wait Until Element Is Visible    locator=${CATEGORIES_TITLE_LOCATOR}    timeout=30s
     ${LIST_TITLE_CATEGORIES}=    Get WebElements    ${CATEGORIES_TITLE_LOCATOR}
     FOR    ${E_TITLE}    IN    @{LIST_TITLE_CATEGORIES}
         ${TITLE}=    Get Text    ${E_TITLE}

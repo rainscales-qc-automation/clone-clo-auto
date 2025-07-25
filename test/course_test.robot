@@ -2,8 +2,8 @@
 Library    SeleniumLibrary
 Library    String
 Library    Collections
-Library    RPA.Netsuite
-Library    RPA.Desktop
+# Library    RPA.Netsuite
+# Library    RPA.Desktop
 Library    BuiltIn
 # Library    ExcelLibrary
 Resource    ../pages/page_object/login_page.robot

@@ -5,7 +5,7 @@ Library    SeleniumLibrary
 Library    String
 Library    Collections
 Library    RPA.Excel.Files
-#Library    RPA.Desktop
+# Library    RPA.Desktop
 *** Keywords ***
 Select value course
     Select Checkbox    ${CORESUBJECT_CKB}
