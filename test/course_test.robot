@@ -10,6 +10,7 @@ Resource    ../pages/page_object/create_course_page.robot
 Resource    ../resources/browser_setup.robot
 Resource    ../resources/variables.robot
 Variables    ../libs/data_reader.py
+Resource    ../pages/page_object/dashboard_page.robot
 #Test Setup    Open Browser To Login Page
 Suite Setup    Open Browser To Login Page
 Suite Teardown    Close Browser and Quit
@@ -19,6 +20,7 @@ Tcs 01: Func-Course-03: Create Course with fully field
     [Documentation]    Kiểm tra việc nhập giá trị vào các trường của khoá học
     [Tags]    smoke    create course
     Login User    ${USERNAME_ADMIN}    ${PASSWORD_ADMIN}
+    Hide Tool Bar Button
     Go to create course
     FOR    ${COURSE}    IN    @{ROBOT_COURSE_PANDAS}
         Enter Course Detail Form    ${COURSE['PROGRAM_VL']}    ${COURSE['COURSE_CODE_VL']}    ${COURSE['COURSE_NAME_VL']}
@@ -65,7 +67,8 @@ Tcs 03: Func-CLO-03: Create CLOs with fully fields
 Tcs 04: Func-CLO-04: Create CLOS with empty required fields
     [Documentation]    Tạo một mục tiêu khoá học mới bằng cách bỏ trống các trường bắt buộc
     [Tags]    smoke    create clo
-    #Login User    ${USERNAME_ADMIN}    ${PASSWORD_ADMIN}  
+    #Login User    ${USERNAME_ADMIN}    ${PASSWORD_ADMIN}
+    Hide Tool Bar Button
     Go To Create CLO 
     Empty Required Fields With CLOs
 
