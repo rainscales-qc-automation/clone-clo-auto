@@ -4,8 +4,6 @@ Resource    ../../resources/browser_setup.robot
 Library    SeleniumLibrary
 Library    String
 Library    Collections
-Library    RPA.Excel.Files
-# Library    RPA.Desktop
 *** Keywords ***
 Select value course
     Select Checkbox    ${CORESUBJECT_CKB}
@@ -51,20 +49,22 @@ Enter Course Detail Form With Maximum Credits
     #Select From List By Label    ${PROGRAME_SELECT}
     Select From List By Label    id:id_program    ${PROGRAM_VL}
     Input Text    ${COURSECODE_INPUT}    ${COURSE_CODE_VL}
-    Input Text    ${COURSENAME_INPUT}    ${COURSE_NAME_VL}        
-    #Input Text    ${CREDITS_INPUT}    ${CREDITS_VL}   
-    ${prev}=    Get Value    ${CREDITS_INPUT}
-    ${prev}=    Convert To Integer    ${prev}
+    Input Text    ${COURSENAME_INPUT}    ${COURSE_NAME_VL}
+    # Input Text    ${CREDITS_INPUT}    ${CREDITS_VL}   
+    # ${prev}=    Get Value    ${CREDITS_INPUT}
+    # ${prev}=    Convert To Integer    ${prev}
 
-    FOR    ${i}    IN RANGE    100
-        Press Keys    ${CREDITS_INPUT}    ARROW_UP
-        Sleep    0.2
-        ${current}=    Get Value    ${CREDITS_INPUT}
-        ${current}=    Convert To Integer    ${current}
-        Run Keyword If    ${current} == ${prev}    Exit For Loop
-        ${prev}=    Set Variable    ${current}
-        Log To Console   Current value: ${current}
+    FOR    ${value}    IN    @{TEST_VALUES}
+        Clear Element Text    ${CREDITS_INPUT}
+        Input Text    ${CREDITS_INPUT}    ${value}
+        #Click Element    ${CREATECOURSE_BTN}
+        Sleep    0.5s
+        ${is_success}=    Run Keyword And Return Status    Element Should Be Visible    Giá trị hợp lệ
+        ${is_error}=      Run Keyword And Return Status    Element Should Be Visible    ${ERROR_MSG}
+        Run Keyword If    ${is_success}    Log    ${value} là giá trị hợp lệ
+        Run Keyword If    ${is_error}      Log    ${value} là giá trị không hợp lệ
     END
+    
     Input Text    ${DESCRIPTION_INPUT}    ${DESCRIPTION_VL}    
     Scroll to Create Course Button
     Click Element    ${TYPE_SELECT}        
@@ -131,63 +131,76 @@ View Course Name From Table
     Click Element    ${COURSES_BTN}
     Wait Until Element Is Visible    ${COURSE_TABLE_DATA}    timeout=10s
 
-Save Course Table Data To Excel
-    ${cols}=    Get Element Count    xpath=//table/thead/tr/th
-    @{headers}=    Create List
-    FOR    ${j}    IN RANGE    1    ${cols}+1
-        ${header}=    Get Text    xpath=//table/thead/tr/th[${j}]
-        Append To List    ${headers}    ${header}
-    END
+# Save Course Table Data To Excel
+#     ${cols}=    Get Element Count    xpath=//table/thead/tr/th
+#     @{headers}=    Create List
+#     FOR    ${j}    IN RANGE    1    ${cols}+1
+#         ${header}=    Get Text    xpath=//table/thead/tr/th[${j}]
+#         Append To List    ${headers}    ${header}
+#     END
 
-    ${rows}=    Get Element Count    xpath=//table/tbody/tr
+#     ${rows}=    Get Element Count    xpath=//table/tbody/tr
 
-    @{all_rows}=    Create List
-    Append To List    ${all_rows}    ${headers}
+#     @{all_rows}=    Create List
+#     Append To List    ${all_rows}    ${headers}
 
-    FOR    ${i}    IN RANGE    1    ${rows}+1
-        @{row}=    Create List
-        FOR    ${j}    IN RANGE    1    ${cols}+1
-            ${cell}=    Get Text    xpath=//table/tbody/tr[${i}]/td[${j}]
-            Append To List    ${row}    ${cell}
-        END
-        Append To List    ${all_rows}    ${row}
-    END
+#     FOR    ${i}    IN RANGE    1    ${rows}+1
+#         @{row}=    Create List
+#         FOR    ${j}    IN RANGE    1    ${cols}+1
+#             ${cell}=    Get Text    xpath=//table/tbody/tr[${i}]/td[${j}]
+#             Append To List    ${row}    ${cell}
+#         END
+#         Append To List    ${all_rows}    ${row}
+#     END
 
-    Create Workbook    ${EXCEL_FILE}
-    Create Worksheet   ${SHEET_NAME_COURSE}    header=${False}
-    Append Rows To Worksheet    ${all_rows}    header=${False}
     
-    Save Workbook    ${EXCEL_FILE}
-    Close Workbook
-
-Save CLO Table Data To Excel
-    ${cols}=    Get Element Count    xpath=//table/thead/tr/th
-    @{headers}=    Create List
-    FOR    ${j}    IN RANGE    1    ${cols}+1
-        ${header}=    Get Text    xpath=//table/thead/tr/th[${j}]
-        Append To List    ${headers}    ${header}
-    END
-
-    ${rows}=    Get Element Count    xpath=//table/tbody/tr
-
-    @{all_rows}=    Create List
-    Append To List    ${all_rows}    ${headers}
-
-    FOR    ${i}    IN RANGE    1    ${rows}+1
-        @{row}=    Create List
-        FOR    ${j}    IN RANGE    1    ${cols}+1
-            ${cell}=    Get Text    xpath=//table/tbody/tr[${i}]/td[${j}]
-            Append To List    ${row}    ${cell}
-        END
-        Append To List    ${all_rows}    ${row}
-    END
-
-    Create Workbook    ${EXCEL_FILE}
-    Create Worksheet   ${SHEET_NAME_CLO}    header=${False}
-    Append Rows To Worksheet    ${all_rows}    header=${False}
+#     ${file_exist}=    Run Keyword And Return Status    File Should Exist    ${EXCEL_FILE}
+#     IF    ${file_exist}
+#         Open Workbook    ${EXCEL_FILE}
+#     ELSE
+#         Create Workbook    ${EXCEL_FILE}
+#     END
     
-    Save Workbook    ${EXCEL_FILE}
-    Close Workbook
+#     Create Worksheet   ${SHEET_NAME_COURSE}    header=${False}
+#     Append Rows To Worksheet    ${all_rows}    header=${False}
+    
+#     Save Workbook    ${EXCEL_FILE}
+#     Close Workbook
+
+# Save CLO Table Data To Excel
+#     ${cols}=    Get Element Count    xpath=//table/thead/tr/th
+#     @{headers}=    Create List
+#     FOR    ${j}    IN RANGE    1    ${cols}+1
+#         ${header}=    Get Text    xpath=//table/thead/tr/th[${j}]
+#         Append To List    ${headers}    ${header}
+#     END
+
+#     ${rows}=    Get Element Count    xpath=//table/tbody/tr
+
+#     @{all_rows}=    Create List
+#     Append To List    ${all_rows}    ${headers}
+
+#     FOR    ${i}    IN RANGE    1    ${rows}+1
+#         @{row}=    Create List
+#         FOR    ${j}    IN RANGE    1    ${cols}+1
+#             ${cell}=    Get Text    xpath=//table/tbody/tr[${i}]/td[${j}]
+#             Append To List    ${row}    ${cell}
+#         END
+#         Append To List    ${all_rows}    ${row}
+#     END
+
+#     ${file_exist}=    Run Keyword And Return Status    File Should Exist    ${EXCEL_FILE}
+#     IF    ${file_exist}
+#         Open Workbook    ${EXCEL_FILE}
+#     ELSE
+#         Create Workbook    ${EXCEL_FILE}
+#     END
+    
+#     Create Worksheet   ${SHEET_NAME_CLO}    header=${False}
+#     Append Rows To Worksheet    ${all_rows}    header=${False}
+    
+#     Save Workbook    ${EXCEL_FILE}
+#     Close Workbook
 
 
 Edit Course

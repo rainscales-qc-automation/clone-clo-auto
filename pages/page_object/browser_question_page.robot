@@ -7,7 +7,7 @@ Library    SeleniumLibrary
 
 *** Keywords ***
 Open Browse Question Page
-    Click Element    ${BROWSER_QUESTIONS_CATEGORY}
+    Click Element    ${BROWSER_QUESTIONS_CATEGORY_LOCATOR}
 
 Filter Approval Status Pending
     Click Element    ${APPROVAL_STATUS_DROPDOWN_LOCATOR}

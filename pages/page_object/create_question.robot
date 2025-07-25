@@ -10,12 +10,12 @@ Login Lecturer And Go To Create Question Page
     [Documentation]    Login as lecturer and navigate to the create question page
     Login User    ${USERNAME_LECTURER}    ${PASSWORD_LECTURER}
 
-    Wait Until Element Is Visible    ${A_CREATE_QUESTION}    10s
+    Wait Until Element Is Visible    ${A_CREATE_QUESTION_LOCATOR}    10s
     Click Create Question Button
     
 Click Create Question Button
     [Documentation]    Click the create question button to open the form
-    Click Element    ${A_CREATE_QUESTION}
+    Click Element    ${A_CREATE_QUESTION_LOCATOR}
 
 Verify Dropdown Options
     [Documentation]    Verify that a dropdown contains all expected options

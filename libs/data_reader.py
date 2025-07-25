@@ -11,7 +11,7 @@ import os
 users_excel_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'pages', 'data_push', 'CLO.xlsx')
 
 
-df_users = r"..\pages\data_push\CLO.xlsx"
+# df_users = r"..\pages\data_push\CLO.xlsx"
 
 # def clean_string(value):
 #     if isinstance(value, str):
@@ -30,6 +30,7 @@ def read_excel_sheet(sheet_name: str) -> list:
     try:
         # Đọc Excel vào DataFrame
         df = pd.read_excel(users_excel_path, sheet_name=sheet_name, engine='openpyxl')
+
         # Chuyển DataFrame thành list of dictionaries
         return df.to_dict(orient='records')
     

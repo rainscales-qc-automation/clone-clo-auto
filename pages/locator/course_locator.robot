@@ -25,7 +25,7 @@ ${CREATENEW_BTN}    //button[contains(.,'Tạo mới')]
 ${UPDATECOURSE_BTN}    //button[contains(.,'Update Course')]
 ${UPDATE_SUCCESS_MESSAGE}    //div[@role='alert' and contains(., 'Course updated successfully!')]
 #CLO variables
-${HOCPHAN_MENUBAR}    //a[contains(.,'Học phần')]
+${HOCPHAN_MENUBAR}    //div[@class='menu-section']//a[contains(., 'Học phần')]    #//a[contains(.,'Học phần')]
 ${CLOs_BTN}    //a[contains(., 'CLOs')]
 ${ADDCLO_BTN}    //a[contains(., 'Add CLO')]
 ${COURSE_SELECT}    id:id_course
@@ -46,3 +46,13 @@ ${SHEET_NAME_COURSE}    get_data_course
 ${SHEET_NAME_CLO}    get_data_clo
 ${COURSE_TABLE_DATA}    //table//tbody/tr/td
 ${COURSE_TABLE_TITLE}    //table//thead/tr/th
+
+${ERROR_MSG}    //p[@id='error_1_id_credits']
+@{TEST_VALUES}    0    -1    500    1000    10000    100000    1000000    10000000    100000000    10000000000    
+
+${FIELD_SEARCH_COURSE}    //input[@placeholder='Search courses...']
+${COURSE_FIND_ICON}    //button[@type='submit']//i[@class='fas fa-search']
+
+@{LIST_FIND_COURSE_KEYWORD}    BLC01    Cơ sở dữ liệu    Active    *     lap   
+
+${COURSE_NOT_FOUND}    //div[contains(text(),'No courses found.')]
