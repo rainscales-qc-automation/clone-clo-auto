@@ -6,10 +6,10 @@ import os
 # current_dir = os.path.dirname(os.path.abspath(__file__))
 # data_dir = os.path.join(current_dir, '..', 'data')
 
-users_excel_path = users_csv_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'data', 'CLO.xlsx')
+users_excel_path = users_csv_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..','pages', 'data_push', 'CLO.xlsx')
 
 
-df_users = r"..\pages\data_push\CLO.xlsx"
+# df_users = r"..\pages\data_push\CLO.xlsx"
 
 # def clean_string(value):
 #     if isinstance(value, str):
@@ -27,7 +27,7 @@ def read_excel_sheet(sheet_name: str) -> list:
     """
     try:
         # Đọc Excel vào DataFrame
-        df = pd.read_excel(df_users, sheet_name=sheet_name, engine='openpyxl')
+        df = pd.read_excel(users_excel_path, sheet_name=sheet_name, engine='openpyxl')
         # Chuyển DataFrame thành list of dictionaries
         return df.to_dict(orient='records')
     
@@ -83,4 +83,4 @@ def get_variables():
         "ROBOT_CHAPTER_PANDAS": read_excel_sheet('chapter'),
     }
     
-#print(get_users_data_with_pandas())
+# print(read_excel_sheet('createcourse'))
