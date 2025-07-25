@@ -1,6 +1,5 @@
-
 robotframework==7.3.1
 robotframework-pythonlibcore==4.4.1
 robotframework-seleniumlibrary==6.7.1
 selenium==4.34.0
-robotframework-requests==0.10.0
+pandas==2.3.1
