@@ -6,7 +6,7 @@ Library    BuiltIn
 # Library    ExcelLibrary
 Resource    ../pages/page_object/login_page.robot
 Resource    ../pages/page_object/create_course_page.robot
-Resource    ../test/login_tests.robot
+#Resource    ../test/login_tests.robot
 Resource    ../resources/browser_setup.robot
 Resource    ../resources/variables.robot
 Variables    ../libs/data_reader.py
