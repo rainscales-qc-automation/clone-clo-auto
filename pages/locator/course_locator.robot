@@ -1,6 +1,3 @@
-*** Settings ***
-
-#Library    RPA.Excel.Files
 
 *** Variables ***
 

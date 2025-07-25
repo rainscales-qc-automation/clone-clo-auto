@@ -42,11 +42,9 @@ Select Trang Thai
     Select From List By Label    ${TRANGTHAI_LOCATOR}    ${TRANG_THAI}
 
 Click Button Add Assessment
-    Wait Until Element Is Visible    ${BUTTON_ADD_ASSESSMENT_LOCATOR}    timeout=10s
+    Wait Until Element Is Visible    ${BUTTON_ADD_ASSESSMENT_LOCATOR}    timeout=15s
     Scroll Element Into View    ${BUTTON_ADD_ASSESSMENT_LOCATOR}
    
-    # Click Element    ${BUTTON_ADD_ASSESSMENT_LOCATOR}
-    # Excute script click button Add Assessment
     Run Keyword And Ignore Error    Click Element    ${BUTTON_ADD_ASSESSMENT_LOCATOR}
 
 

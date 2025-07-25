@@ -3,7 +3,7 @@ Library    SeleniumLibrary
 Library    ../libs/browser_options.py
 # Variables    ../libs/browser_options.py
 Resource   ../resources/variables.robot
-#Resource    ../pages/page_object/dashboard_page.robot
+Resource    ../pages/page_object/dashboard_page.robot
 
 
 
@@ -13,7 +13,7 @@ Open Browser To Login Page
     ${chrome_options}=    Get Chrome Options
     
     Open Browser    ${BASE_URL}    ${BROWSER}    ${chrome_options}  
-#    Hide Tool Bar Button
+    Hide Tool Bar Button
     Maximize Browser Window
     Set Selenium Timeout    10s
 

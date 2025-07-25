@@ -45,8 +45,8 @@ def get_chrome_options():
 # import keyword robot
 # from robot.api.deco import keyword
 
-# create class options
-# class BrowserOptions:
+# # create class options
+# class browser_options:
 #     def __init__(self):
 #         self.options = Options()
         

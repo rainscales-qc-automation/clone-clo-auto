@@ -49,7 +49,7 @@ Get Ty Trong In Table
     ${integer_string}=  Replace String    ${number_string}    .00    ${EMPTY} 
     # Chuyển chuỗi thành số nguyên
     ${integer_value}=  Convert To Integer    ${integer_string}
-    RETURN    ${stripped_text}
+    RETURN    ${integer_value}
 
 
 Get Thoi Gian In Table

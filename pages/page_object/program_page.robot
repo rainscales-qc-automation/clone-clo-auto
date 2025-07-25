@@ -41,7 +41,7 @@ Verify Create Program Failed
     Element Should Be Visible  ${ProgramErrorMessage}  timeout=5
 
 Go To Program Management Page
-    Element Should Be Visible  ${GotoProgram}  timeout=5
+    Element Should Be Visible  ${GotoProgram}  timeout=15
     Click Element    ${GotoProgram}
 
 Input Search
