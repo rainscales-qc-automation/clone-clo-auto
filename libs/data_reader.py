@@ -28,6 +28,8 @@ def read_excel_sheet(sheet_name: str) -> list:
     try:
         # Đọc Excel vào DataFrame
         df = pd.read_excel(users_excel_path, sheet_name=sheet_name, engine='openpyxl')
+        # dfa = pd.DataFrame(df)
+        
         # Chuyển DataFrame thành list of dictionaries
         return df.to_dict(orient='records')
     
