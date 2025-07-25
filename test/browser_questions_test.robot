@@ -1,14 +1,14 @@
 *** Settings ***
 Library    SeleniumLibrary
-Test Setup       Open Browser To Login Page
-Test Teardown     Close Browser And Quit
+
 Resource    ../pages/page_object/browser_question_page.robot
 Resource    ../pages/page_object/dashboard_page.robot
 Resource    ../pages/page_object/login_page.robot
 Resource    ../resources/browser_setup.robot
 Resource    ../pages/page_object/categories.robot
 
-
+Test Setup       Open Browser To Login Page
+Test Teardown     Close Browser And Quit
 
 *** Test Cases ***
 TC_BrowserQs_001: Approve Question

@@ -3,6 +3,10 @@ Library  SeleniumLibrary
 Resource   ../locator/program_locator.robot
 Resource    ../../pages/page_object/common_page.robot
 Resource    ../../resources/variables.robot
+Resource    ../pages/page_object/categories.robot
+
+
+
 
 
 *** Keywords ***
@@ -41,8 +45,9 @@ Verify Create Program Failed
     Element Should Be Visible  ${ProgramErrorMessage}  timeout=5
 
 Go To Program Management Page
-    Element Should Be Visible  ${GotoProgram}  timeout=15
-    Click Element    ${GotoProgram}
+    # Element Should Be Visible  ${GotoProgram}  timeout=15
+    Go To Categories    Chương trình đào tạo
+    # Click Element    ${GotoProgram}
 
 Input Search
     Input Text  ${InputSearch}  Khoa Luan

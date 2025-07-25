@@ -10,9 +10,8 @@ Resource   ../locator/add_assessment_page_locator.robot
 Open Add Assessment Form
     [Documentation]    Chờ nút thêm đánh giá xuất hiện rồi click để mở form
     Wait Until Element Is Visible    ${ADD_ASSESSMENT_BUTTON_LOCATOR}    timeout=10s
+    Wait Until Element Is Enabled    ${ADD_ASSESSMENT_BUTTON_LOCATOR}    timeout=10s
     Scroll Element Into View    ${ADD_ASSESSMENT_BUTTON_LOCATOR}
-    Sleep    2s
-    # Execute Javascript    arguments[0].click()    ${ADD_ASSESSMENT_BUTTON_LOCATOR}
     Click Element    ${ADD_ASSESSMENT_BUTTON_LOCATOR}
     Wait Until Page Contains Element    ${TITLE_ADD_ASSESSMENT_LOCATOR}    timeout=3s
 
@@ -23,6 +22,7 @@ Is Assessment Button Visible
     Wait Until Element Is Visible    ${ADD_ASSESSMENT_BUTTON_LOCATOR}    timeout=15s
     ${is_visible}=    Run Keyword And Return Status    Element Should Be Visible    ${ADD_ASSESSMENT_BUTTON_LOCATOR}
     RETURN    ${is_visible}
+
 Get Name Assessment In Table
     [Documentation]    Lấy tên đánh giá trong bảng   
     ${raw_text}=    Get Text    ${NAME_COURSE_TABLE_LOCATOR}

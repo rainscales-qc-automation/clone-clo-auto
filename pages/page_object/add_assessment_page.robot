@@ -43,12 +43,10 @@ Select Trang Thai
 
 Click Button Add Assessment
     Wait Until Element Is Visible    ${BUTTON_ADD_ASSESSMENT_LOCATOR}    timeout=15s
+    Wait Until Element Is Enabled    ${BUTTON_ADD_ASSESSMENT_LOCATOR}    timeout=10s
     Scroll Element Into View    ${BUTTON_ADD_ASSESSMENT_LOCATOR}
-   
     Run Keyword And Ignore Error    Click Element    ${BUTTON_ADD_ASSESSMENT_LOCATOR}
-
-
-
+    
 Fill Assessment Form
     [Arguments]    ${TEN_DANH_GIA}    ${ASSESSMENT_TYPE}    ${TY_TRONG}    ${DINH_DANG_THI}    ${THOI_GIAN}    ${TONG_DIEM}    ${DIEM_DAT}    ${TRANG_THAI}
     Enter Ten Danh Gia    ${TEN_DANH_GIA}

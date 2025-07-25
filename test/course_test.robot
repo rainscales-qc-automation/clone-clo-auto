@@ -22,7 +22,7 @@ Tcs 01: Func-Course-03: Create Course with fully field
     [Documentation]    Kiểm tra việc nhập giá trị vào các trường của khoá học
     [Tags]    smoke    create course
     Login User    ${USERNAME_ADMIN}    ${PASSWORD_ADMIN}
-    Hide Tool Bar Button
+ 
     Go to create course
     FOR    ${COURSE}    IN    @{ROBOT_COURSE_PANDAS}
         Enter Course Detail Form    ${COURSE['PROGRAM_VL']}    ${COURSE['COURSE_CODE_VL']}    ${COURSE['COURSE_NAME_VL']}
@@ -70,7 +70,7 @@ Tcs 04: Func-CLO-04: Create CLOS with empty required fields
     [Documentation]    Tạo một mục tiêu khoá học mới bằng cách bỏ trống các trường bắt buộc
     [Tags]    smoke    create clo
     #Login User    ${USERNAME_ADMIN}    ${PASSWORD_ADMIN}
-    Hide Tool Bar Button
+   
     Go To Create CLO 
     Empty Required Fields With CLOs
 
@@ -132,7 +132,7 @@ Tcs 12: "Tạo mới" button inactive
     [Documentation]    Kiểm tra nút "Tạo mới" không hoạt động khi nhấp vào
     [Tags]    smoke    create course
     #Login User    ${USERNAME_ADMIN}    ${PASSWORD_ADMIN}
-    #Go to create course
+    Go to create course
     View Course Name From Table
     Click Element   ${VIEWCOURSE_BTN} 
     Scroll Element Into View    ${CREATENEW_BTN}

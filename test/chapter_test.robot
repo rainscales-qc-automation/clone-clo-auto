@@ -17,7 +17,7 @@ Suite Teardown    Close Browser and Quit
 
 Tcs 01: Func-Chapter: Create Chapter with fully field
     [Documentation]    Kiểm tra việc nhập giá trị vào các trường của tạo chương
-    [Teardown]    Capture Page Screenshot
+   
     [Tags]    smoke    create course
     Login User    ${USERNAME_ADMIN}    ${PASSWORD_ADMIN}
     #Go to create course
