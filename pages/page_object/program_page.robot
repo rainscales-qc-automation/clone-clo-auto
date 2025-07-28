@@ -3,7 +3,7 @@ Library  SeleniumLibrary
 Resource   ../locator/program_locator.robot
 Resource    ../../pages/page_object/common_page.robot
 Resource    ../../resources/variables.robot
-Resource    ../pages/page_object/categories.robot
+Resource    ../../pages/page_object/categories.robot
 
 
 
