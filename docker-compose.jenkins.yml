@@ -1,0 +1,58 @@
+# Docker Compose file for running Robot Framework tests in Jenkins
+# This is optional - use if you want to run tests in Docker containers
+
+version: '3.8'
+
+services:
+  robot-tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.robot
+    volumes:
+      - ./results:/app/results
+      - ./test:/app/test
+      - ./resources:/app/resources
+      - ./libs:/app/libs
+      - ./pages:/app/pages
+    environment:
+      - PYTHONPATH=/app
+    command: python run_tests.py
+    
+  # Optional: Selenium Grid for browser testing
+  selenium-hub:
+    image: selenium/hub:4.15.0
+    container_name: selenium-hub
+    ports:
+      - "4444:4444"
+    environment:
+      - GRID_MAX_SESSION=16
+      - GRID_BROWSER_TIMEOUT=300
+      - GRID_TIMEOUT=300
+      
+  chrome:
+    image: selenium/node-chrome:4.15.0
+    shm_size: 2gb
+    depends_on:
+      - selenium-hub
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
+      - NODE_MAX_INSTANCES=4
+      - NODE_MAX_SESSION=4
+    volumes:
+      - /dev/shm:/dev/shm
+    scale: 2
+    
+  firefox:
+    image: selenium/node-firefox:4.15.0
+    shm_size: 2gb
+    depends_on:
+      - selenium-hub
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
+      - NODE_MAX_INSTANCES=4
+      - NODE_MAX_SESSION=4
+    volumes:
+      - /dev/shm:/dev/shm
+    scale: 1
