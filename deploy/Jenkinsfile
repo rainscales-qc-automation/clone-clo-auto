@@ -76,32 +76,44 @@ pipeline {
             steps {
                 echo 'Testing Docker image...'
                 script {
-                    sh """
-                        echo "Testing if image exists..."
-                        docker images | grep ${DOCKER_IMAGE}
+                    try {
+                        sh """
+                            echo "Testing if image exists..."
+                            docker images | grep ${DOCKER_IMAGE}
 
-                        echo "Testing Python installation..."
-                        docker run --rm ${DOCKER_IMAGE}:${DOCKER_TAG} python --version
+                            echo "Testing Python installation..."
+                            docker run --rm ${DOCKER_IMAGE}:${DOCKER_TAG} python --version
 
-                        echo "Testing Robot Framework installation..."
-                        docker run --rm ${DOCKER_IMAGE}:${DOCKER_TAG} robot --version
+                            echo "Testing Robot Framework installation..."
+                            docker run --rm ${DOCKER_IMAGE}:${DOCKER_TAG} bash -c "robot --version"
+                        """
 
-                        echo "Testing Chrome installation..."
-                        docker run --rm ${DOCKER_IMAGE}:${DOCKER_TAG} google-chrome --version
+                        sh """
+                            echo "Testing Chrome installation..."
+                            docker run --rm ${DOCKER_IMAGE}:${DOCKER_TAG} google-chrome --version
 
-                        echo "Testing ChromeDriver installation..."
-                        docker run --rm ${DOCKER_IMAGE}:${DOCKER_TAG} chromedriver --version
+                            echo "Testing ChromeDriver installation..."
+                            docker run --rm ${DOCKER_IMAGE}:${DOCKER_TAG} chromedriver --version
+                        """
 
-                        echo "Testing Chrome WebDriver functionality..."
-                        docker run --rm ${DOCKER_IMAGE}:${DOCKER_TAG} python3 /app/deploy/test_chrome.py
+                        sh """
+                            echo "Testing Chrome WebDriver functionality..."
+                            timeout 60 docker run --rm ${DOCKER_IMAGE}:${DOCKER_TAG} python3 /app/deploy/test_chrome.py
 
-                        echo "All components tested successfully"
-                    """
+                            echo "All components tested successfully"
+                        """
+                    } catch (Exception e) {
+                        echo "Component test failed: ${e.getMessage()}"
+                        error("Docker image component tests failed")
+                    }
                 }
             }
         }
         
         stage('Run Robot Framework Tests') {
+            options {
+                timeout(time: 15, unit: 'MINUTES')
+            }
             steps {
                 echo 'Running Robot Framework tests...'
                 script {
@@ -109,8 +121,8 @@ pipeline {
                         sh """
                             echo "Starting Robot Framework test execution..."
 
-                            # Run tests in Docker container
-                            docker run --rm \
+                            # Run tests in Docker container with timeout
+                            timeout 900 docker run --rm \
                                 --name robot-tests-${BUILD_NUMBER} \
                                 -v ${RESULTS_DIR}:/app/results \
                                 -e DISPLAY=:99 \
