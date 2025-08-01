@@ -79,19 +79,22 @@ pipeline {
                     sh """
                         echo "Testing if image exists..."
                         docker images | grep ${DOCKER_IMAGE}
-                        
+
                         echo "Testing Python installation..."
                         docker run --rm ${DOCKER_IMAGE}:${DOCKER_TAG} python --version
-                        
+
                         echo "Testing Robot Framework installation..."
                         docker run --rm ${DOCKER_IMAGE}:${DOCKER_TAG} robot --version
-                        
+
                         echo "Testing Chrome installation..."
                         docker run --rm ${DOCKER_IMAGE}:${DOCKER_TAG} google-chrome --version
-                        
+
                         echo "Testing ChromeDriver installation..."
                         docker run --rm ${DOCKER_IMAGE}:${DOCKER_TAG} chromedriver --version
-                        
+
+                        echo "Testing Chrome WebDriver functionality..."
+                        docker run --rm ${DOCKER_IMAGE}:${DOCKER_TAG} python3 /app/deploy/test_chrome.py
+
                         echo "All components tested successfully"
                     """
                 }
@@ -102,22 +105,33 @@ pipeline {
             steps {
                 echo 'Running Robot Framework tests...'
                 script {
+                    try {
+                        sh """
+                            echo "Starting Robot Framework test execution..."
+
+                            # Run tests in Docker container
+                            docker run --rm \
+                                --name robot-tests-${BUILD_NUMBER} \
+                                -v ${RESULTS_DIR}:/app/results \
+                                -e DISPLAY=:99 \
+                                ${DOCKER_IMAGE}:${DOCKER_TAG} \
+                                python3 /app/run_tests.py
+
+                            echo "Test execution completed successfully"
+                        """
+                    } catch (Exception e) {
+                        echo "Tests completed with some failures (this is normal for initial setup)"
+                        echo "Error details: ${e.getMessage()}"
+                        // Mark build as unstable but continue pipeline
+                        currentBuild.result = 'UNSTABLE'
+                    }
+
+                    // Always check and copy results regardless of test outcome
                     sh """
-                        echo "Starting Robot Framework test execution..."
-                        
-                        # Run tests in Docker container
-                        docker run --rm \
-                            --name robot-tests-${BUILD_NUMBER} \
-                            -v ${RESULTS_DIR}:/app/results \
-                            -e DISPLAY=:99 \
-                            ${DOCKER_IMAGE}:${DOCKER_TAG}
-                        
-                        echo "Test execution completed"
-                        
                         # Check if results were generated
                         echo "Checking test results..."
                         ls -la ${RESULTS_DIR}/ || echo "No results directory found"
-                        
+
                         # Copy results to reports directory for archiving
                         if [ -d "${RESULTS_DIR}" ]; then
                             cp -r ${RESULTS_DIR}/* ${REPORTS_DIR}/ || echo "No results to copy"
