@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  robot-tests:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    image: robot-framework-tests:latest
+    container_name: robot-framework-tests
+    volumes:
+      # Mount results directory to persist test results
+      - ./results:/app/results
+      # Mount test directory for development (optional)
+      - ../test:/app/test:ro
+      # Mount configuration files (optional)
+      - ../test_runner:/app/test_runner:ro
+    environment:
+      - DISPLAY=:99
+      - PYTHONUNBUFFERED=1
+      - ROBOT_REPORTS_DIR=/app/results
+      - ROBOT_TESTS_DIR=/app/test
+    networks:
+      - robot-network
+    # Remove the container after execution
+    restart: "no"
+    # Override default command if needed
+    # command: ["python", "run_tests.py"]
+
+  # Optional: Add a service for viewing results via HTTP server
+  results-viewer:
+    image: nginx:alpine
+    container_name: robot-results-viewer
+    ports:
+      - "8080:80"
+    volumes:
+      - ./results:/usr/share/nginx/html:ro
+    networks:
+      - robot-network
+    depends_on:
+      - robot-tests
+    # Only start this service manually when needed
+    profiles:
+      - viewer
+
+networks:
+  robot-network:
+    driver: bridge

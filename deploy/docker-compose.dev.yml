@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  robot-tests-dev:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    image: robot-framework-tests:dev
+    container_name: robot-framework-tests-dev
+    volumes:
+      # Mount entire project for development
+      - ..:/app
+      # Mount results directory
+      - ./results:/app/results
+    environment:
+      - DISPLAY=:99
+      - PYTHONUNBUFFERED=1
+      - ROBOT_REPORTS_DIR=/app/results
+      - ROBOT_TESTS_DIR=/app/test
+      # Development environment variables
+      - ROBOT_ENV=development
+    networks:
+      - robot-network
+    # Keep container running for development
+    stdin_open: true
+    tty: true
+    # Override entrypoint for development
+    entrypoint: ["/app/start.sh"]
+    command: ["bash"]
+
+  # Results viewer for development
+  results-viewer-dev:
+    image: nginx:alpine
+    container_name: robot-results-viewer-dev
+    ports:
+      - "8080:80"
+    volumes:
+      - ./results:/usr/share/nginx/html:ro
+      # Custom nginx config for better file browsing
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - robot-network
+    depends_on:
+      - robot-tests-dev
+
+networks:
+  robot-network:
+    driver: bridge

@@ -1,0 +1,225 @@
+pipeline {
+    agent any
+    
+    environment {
+        // Docker image names
+        DOCKER_IMAGE = "robot-framework-tests"
+        DOCKER_TAG = "${BUILD_NUMBER}"
+        DOCKER_LATEST = "latest"
+        
+        // Test configuration
+        RESULTS_DIR = "${WORKSPACE}/test_results"
+        REPORTS_DIR = "${WORKSPACE}/reports"
+        
+        // Email configuration (sẽ được lấy từ container)
+        SEND_EMAIL = "true"
+    }
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Checking out code from repository...'
+                checkout scm
+                
+                script {
+                    // Display current directory and files
+                    sh """
+                        echo "Current directory: \$(pwd)"
+                        echo "Listing files:"
+                        ls -la
+                        echo "Checking test directory:"
+                        ls -la test/ || echo "Test directory not found"
+                    """
+                }
+            }
+        }
+        
+        stage('Prepare Environment') {
+            steps {
+                echo 'Preparing test environment...'
+                script {
+                    sh """
+                        # Create directories for test results
+                        mkdir -p ${RESULTS_DIR}
+                        mkdir -p ${REPORTS_DIR}
+                        
+                        # Set permissions
+                        chmod 755 ${RESULTS_DIR}
+                        chmod 755 ${REPORTS_DIR}
+                        
+                        echo "Environment prepared successfully"
+                    """
+                }
+            }
+        }
+        
+        stage('Build Docker Image') {
+            steps {
+                echo 'Building Docker image for Robot Framework tests...'
+                script {
+                    sh """
+                        echo "Building Docker image from deploy directory..."
+                        cd deploy
+                        
+                        # Build Docker image
+                        docker build -f Dockerfile -t ${DOCKER_IMAGE}:${DOCKER_TAG} ..
+                        docker tag ${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_IMAGE}:${DOCKER_LATEST}
+                        
+                        echo "Docker image built successfully"
+                        docker images | grep ${DOCKER_IMAGE}
+                    """
+                }
+            }
+        }
+        
+        stage('Test Docker Image') {
+            steps {
+                echo 'Testing Docker image...'
+                script {
+                    sh """
+                        echo "Testing if image exists..."
+                        docker images | grep ${DOCKER_IMAGE}
+                        
+                        echo "Testing Python installation..."
+                        docker run --rm ${DOCKER_IMAGE}:${DOCKER_TAG} python --version
+                        
+                        echo "Testing Robot Framework installation..."
+                        docker run --rm ${DOCKER_IMAGE}:${DOCKER_TAG} robot --version
+                        
+                        echo "Testing Chrome installation..."
+                        docker run --rm ${DOCKER_IMAGE}:${DOCKER_TAG} google-chrome --version
+                        
+                        echo "Testing ChromeDriver installation..."
+                        docker run --rm ${DOCKER_IMAGE}:${DOCKER_TAG} chromedriver --version
+                        
+                        echo "All components tested successfully"
+                    """
+                }
+            }
+        }
+        
+        stage('Run Robot Framework Tests') {
+            steps {
+                echo 'Running Robot Framework tests...'
+                script {
+                    sh """
+                        echo "Starting Robot Framework test execution..."
+                        
+                        # Run tests in Docker container
+                        docker run --rm \
+                            --name robot-tests-${BUILD_NUMBER} \
+                            -v ${RESULTS_DIR}:/app/results \
+                            -e DISPLAY=:99 \
+                            ${DOCKER_IMAGE}:${DOCKER_TAG}
+                        
+                        echo "Test execution completed"
+                        
+                        # Check if results were generated
+                        echo "Checking test results..."
+                        ls -la ${RESULTS_DIR}/ || echo "No results directory found"
+                        
+                        # Copy results to reports directory for archiving
+                        if [ -d "${RESULTS_DIR}" ]; then
+                            cp -r ${RESULTS_DIR}/* ${REPORTS_DIR}/ || echo "No results to copy"
+                        fi
+                    """
+                }
+            }
+        }
+        
+        stage('Process Test Results') {
+            steps {
+                echo 'Processing test results...'
+                script {
+                    sh """
+                        echo "Processing Robot Framework test results..."
+                        
+                        # Check for output.xml
+                        if [ -f "${RESULTS_DIR}/output.xml" ]; then
+                            echo "✅ Test results found"
+                            
+                            # Display basic test statistics
+                            echo "Test Statistics:"
+                            if command -v robot >/dev/null 2>&1; then
+                                robot --dryrun --output /dev/null --report /dev/null --log /dev/null ${WORKSPACE}/test/ 2>/dev/null || echo "Could not get test count"
+                            fi
+                            
+                            # Check if log.html and report.html exist
+                            [ -f "${RESULTS_DIR}/log.html" ] && echo "✅ Log file generated" || echo "❌ Log file missing"
+                            [ -f "${RESULTS_DIR}/report.html" ] && echo "✅ Report file generated" || echo "❌ Report file missing"
+                            
+                        else
+                            echo "❌ No test results found"
+                            echo "Contents of results directory:"
+                            ls -la ${RESULTS_DIR}/ || echo "Results directory not accessible"
+                            exit 1
+                        fi
+                    """
+                }
+            }
+        }
+    }
+    
+    post {
+        always {
+            echo 'Pipeline completed - cleaning up...'
+            
+            // Archive test results
+            script {
+                if (fileExists("${RESULTS_DIR}")) {
+                    archiveArtifacts artifacts: 'test_results/**/*', allowEmptyArchive: true
+                    
+                    // Publish Robot Framework results if plugin is available
+                    try {
+                        step([
+                            $class: 'RobotPublisher',
+                            outputPath: 'test_results',
+                            outputFileName: 'output.xml',
+                            reportFileName: 'report.html',
+                            logFileName: 'log.html',
+                            disableArchiveOutput: false,
+                            passThreshold: 100,
+                            unstableThreshold: 95,
+                            onlyCritical: true,
+                            otherFiles: ''
+                        ])
+                    } catch (Exception e) {
+                        echo "Robot Framework plugin not available, skipping detailed reporting"
+                    }
+                }
+            }
+            
+            // Clean up workspace
+            cleanWs()
+        }
+        
+        success {
+            echo '✅ Robot Framework tests completed successfully!'
+            script {
+                // Send success notification if needed
+                sh """
+                    echo "All tests passed successfully"
+                    echo "Build: ${BUILD_NUMBER}"
+                    echo "Timestamp: \$(date)"
+                """
+            }
+        }
+        
+        failure {
+            echo '❌ Robot Framework tests failed!'
+            script {
+                // Send failure notification if needed
+                sh """
+                    echo "Tests failed"
+                    echo "Build: ${BUILD_NUMBER}"
+                    echo "Timestamp: \$(date)"
+                    echo "Check the test results for details"
+                """
+            }
+        }
+        
+        unstable {
+            echo '⚠️ Robot Framework tests completed with some failures'
+        }
+    }
+}
